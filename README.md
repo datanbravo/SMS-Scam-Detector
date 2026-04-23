@@ -23,7 +23,7 @@ It does not just train a model — it handles:
 
 The system follows this pipeline:
 
-```
+
 data collection
     ↓
 dataset_pipeline.py
@@ -39,7 +39,7 @@ trained model + vectorizer
 run_detector.py
     ↓
 prediction + explanation
-```
+
 
 It is a **hybrid system**:
 

@@ -7,7 +7,7 @@ from typing import Any
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
@@ -203,6 +203,10 @@ def train_and_evaluate_one_model(
         predicted_labels=predicted_labels,
     )
 
+    #print clasificatio report here i think
+    print(f"\n{model_name}")
+    print(classification_report(y_true=y_test, y_pred=predicted_labels))
+    
     return {
         "model_name": model_name,
         "metrics": metric_dictionary,
@@ -288,17 +292,17 @@ def save_training_report(training_report: dict[str, Any]) -> None:
 
 def print_model_results(model_result_list: list[dict[str, Any]], best_model_result: dict[str, Any]) -> None:
     # Print readable model metrics to the terminal.
-    print("\nmodel evaluation results")
-    print("-" * 50)
+    # print("\nmodel evaluation results")
+    # print("-" * 50)
 
-    for model_result in model_result_list:
-        model_name = model_result["model_name"]
-        metrics = model_result["metrics"]
+    # for model_result in model_result_list:
+    #     model_name = model_result["model_name"]
+    #     metrics = model_result["metrics"]
 
-        print(f"\n{model_name}")
-        for metric_name in evaluation_metric_names:
-            if metric_name in metrics:
-                print(f"  {metric_name}: {metrics[metric_name]:.4f}")
+    #     print(f"\n{model_name}")
+    #     for metric_name in evaluation_metric_names:
+    #         if metric_name in metrics:
+    #             print(f"  {metric_name}: {metrics[metric_name]:.4f}")
 
     print("\nbest model")
     print("-" * 50)

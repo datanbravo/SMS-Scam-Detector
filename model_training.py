@@ -43,12 +43,14 @@ from model_config import (
 # ------------------------------------------------------------
 
 def load_dataset(dataset_path: str | Any) -> pd.DataFrame:
-    # Load one csv dataset.
+    # Load a CSV dataset from the provided path
+    # and return it as a pandas DataFrame.
     return pd.read_csv(dataset_path)
 
 
 def validate_dataset_columns(dataset: pd.DataFrame, dataset_name: str) -> None:
-    # Make sure the required training columns exist.
+    # Verify the dataset contains the required text
+    # and label columns and its not empty
     required_columns = [training_text_column, training_label_column]
 
     missing_columns = [
@@ -67,7 +69,7 @@ def validate_dataset_columns(dataset: pd.DataFrame, dataset_name: str) -> None:
 
 
 def validate_training_inputs(train_dataset: pd.DataFrame, test_dataset: pd.DataFrame) -> None:
-    # Validate both train and test datasets before training starts.
+    # Validate both train and test datasets before starting feature extraction and training.
     validate_dataset_columns(train_dataset, "train_dataset")
     validate_dataset_columns(test_dataset, "test_dataset")
 
@@ -83,7 +85,7 @@ def validate_training_inputs(train_dataset: pd.DataFrame, test_dataset: pd.DataF
 # ------------------------------------------------------------
 
 def build_vectorizer() -> TfidfVectorizer:
-    # Create the TF-IDF vectorizer using the project settings.
+    # Create the TF-IDF vectorizer using settings imported from model_config.
     return TfidfVectorizer(
         max_features=tfidf_max_features,
         min_df=tfidf_min_document_frequency,
@@ -118,6 +120,8 @@ def prepare_feature_matrices(
 
 def build_logistic_regression_model() -> LogisticRegression:
     # Logistic Regression is a strong baseline for text classification.
+    # Build and return a Logistic Regression model
+    # configured for text classification tasks. 
     return LogisticRegression(
         C=logistic_regression_regularization_strength,
         max_iter=logistic_regression_max_iterations,
@@ -127,6 +131,8 @@ def build_logistic_regression_model() -> LogisticRegression:
 
 def build_decision_tree_model() -> DecisionTreeClassifier:
     # Decision Tree is useful as a class-aligned comparison model.
+    # Build and return a Decision Tree classifier
+    # for comparison against other models.
     return DecisionTreeClassifier(
         max_depth=decision_tree_max_depth,
         min_samples_leaf=decision_tree_min_samples_leaf,
@@ -136,6 +142,8 @@ def build_decision_tree_model() -> DecisionTreeClassifier:
 
 def build_svm_model() -> SVC:
     # Linear SVM is often strong for sparse text features like TF-IDF.
+    # Build and return a Support Vector Machine model
+    # optimized for sparse TF-IDF feature vectors.  
     return SVC(
         C=svm_regularization_strength,
         kernel=svm_kernel,
@@ -194,7 +202,8 @@ def train_and_evaluate_one_model(
     x_test: Any,
     y_test: pd.Series,
 ) -> dict[str, Any]:
-    # Fit one model and evaluate it on the test set.
+    # Train a single model, generate predictions, 
+    # and evaluate its performance on test data.
     model.fit(x_train, y_train)
     predicted_labels = model.predict(x_test)
 
@@ -244,6 +253,7 @@ def build_training_report(
     vectorizer: TfidfVectorizer,
 ) -> dict[str, Any]:
     # Build a small JSON report summarizing the training run.
+    # containing dataset, vectorizer, and model results.
     return {
         "training_text_column": training_text_column,
         "training_label_column": training_label_column,
@@ -313,7 +323,9 @@ def print_model_results(model_result_list: list[dict[str, Any]], best_model_resu
 # ------------------------------------------------------------
 
 def main() -> None:
-    # Run the full model training pipeline.
+    # Run the full model training pipeline:
+    # dataset loading, validation, vectorization,
+    # model training, evaluation, and output saving.
     ensure_model_output_directories_exist()
 
     train_dataset = load_dataset(train_dataset_path)

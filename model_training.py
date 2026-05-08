@@ -279,15 +279,15 @@ def build_training_report(
         "test_row_count": int(len(test_dataset)),
         "enabled_models": enabled_model_names,
         "primary_metric_name": primary_metric_name,
-        "vectorizer_settings": {
-            "max_features": tfidf_max_features,
-            "min_document_frequency": tfidf_min_document_frequency,
-            "ngram_range": list(tfidf_ngram_range),
-            "lowercase": tfidf_lowercase,
-            "token_pattern": tfidf_token_pattern,
-        },
+        # "vectorizer_settings": {
+        #     "max_features": tfidf_max_features,
+        #     "min_document_frequency": tfidf_min_document_frequency,
+        #     "ngram_range": list(tfidf_ngram_range),
+        #     "lowercase": tfidf_lowercase,
+        #     "token_pattern": tfidf_token_pattern,
+        # },
         # "vocabulary_size": int(len(vectorizer.vocabulary_)),
-        "vocabulary_size": int(len(embedder.vocabulary_)),
+        # "vocabulary_size": int(len(embedder.vocabulary_)),
         "model_results": [
             {
                 "model_name": model_result["model_name"],

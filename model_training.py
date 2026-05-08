@@ -10,6 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
+from sentence_transformers import SentenceTransformer
 
 from model_config import (
     decision_tree_max_depth,
@@ -82,34 +83,56 @@ def validate_training_inputs(train_dataset: pd.DataFrame, test_dataset: pd.DataF
 # text vectorization
 # ------------------------------------------------------------
 
-def build_vectorizer() -> TfidfVectorizer:
-    # Create the TF-IDF vectorizer using the project settings.
-    return TfidfVectorizer(
-        max_features=tfidf_max_features,
-        min_df=tfidf_min_document_frequency,
-        ngram_range=tfidf_ngram_range,
-        lowercase=tfidf_lowercase,
-        token_pattern=tfidf_token_pattern,
-    )
+# def build_vectorizer() -> TfidfVectorizer:
+#     # Create the TF-IDF vectorizer using the project settings.
+#     return TfidfVectorizer(
+        # max_features=tfidf_max_features,
+        # min_df=tfidf_min_document_frequency,
+        # ngram_range=tfidf_ngram_range,
+        # lowercase=tfidf_lowercase,
+        # token_pattern=tfidf_token_pattern,
+#     )
 
+# def prepare_feature_matrices(
+#     train_dataset: pd.DataFrame,
+#     test_dataset: pd.DataFrame,
+# ) -> tuple[TfidfVectorizer, Any, Any, pd.Series, pd.Series]:
+#     # Fit the vectorizer on training text, then transform train and test text.
+#     vectorizer = build_vectorizer()
+
+#     train_text_list = train_dataset[training_text_column].fillna("").astype(str).tolist()
+#     test_text_list = test_dataset[training_text_column].fillna("").astype(str).tolist()
+
+#     x_train = vectorizer.fit_transform(train_text_list)
+#     x_test = vectorizer.transform(test_text_list)
+
+#     y_train = train_dataset[training_label_column].astype(int)
+#     y_test = test_dataset[training_label_column].astype(int)
+
+#     return vectorizer, x_train, x_test, y_train, y_test
+
+def build_vectorizer() -> SentenceTransformer:
+    return SentenceTransformer(
+        normalize_embeddings=True
+    )
 
 def prepare_feature_matrices(
     train_dataset: pd.DataFrame,
     test_dataset: pd.DataFrame,
-) -> tuple[TfidfVectorizer, Any, Any, pd.Series, pd.Series]:
+) -> tuple[SentenceTransformer, Any, Any, pd.Series, pd.Series]:
     # Fit the vectorizer on training text, then transform train and test text.
-    vectorizer = build_vectorizer()
+    embedder = build_vectorizer()
 
     train_text_list = train_dataset[training_text_column].fillna("").astype(str).tolist()
     test_text_list = test_dataset[training_text_column].fillna("").astype(str).tolist()
 
-    x_train = vectorizer.fit_transform(train_text_list)
-    x_test = vectorizer.transform(test_text_list)
+    x_train = embedder.encode(train_text_list)
+    x_test = embedder.encode(test_text_list)
 
     y_train = train_dataset[training_label_column].astype(int)
     y_test = test_dataset[training_label_column].astype(int)
 
-    return vectorizer, x_train, x_test, y_train, y_test
+    return embedder, x_train, x_test, y_train, y_test
 
 
 # ------------------------------------------------------------
@@ -245,7 +268,8 @@ def build_training_report(
     best_model_result: dict[str, Any],
     train_dataset: pd.DataFrame,
     test_dataset: pd.DataFrame,
-    vectorizer: TfidfVectorizer,
+    # vectorizer: TfidfVectorizer,
+    embedder: SentenceTransformer
 ) -> dict[str, Any]:
     # Build a small JSON report summarizing the training run.
     return {
@@ -262,7 +286,8 @@ def build_training_report(
             "lowercase": tfidf_lowercase,
             "token_pattern": tfidf_token_pattern,
         },
-        "vocabulary_size": int(len(vectorizer.vocabulary_)),
+        # "vocabulary_size": int(len(vectorizer.vocabulary_)),
+        "vocabulary_size": int(len(embedder.vocabulary_)),
         "model_results": [
             {
                 "model_name": model_result["model_name"],
@@ -325,7 +350,12 @@ def main() -> None:
 
     validate_training_inputs(train_dataset, test_dataset)
 
-    vectorizer, x_train, x_test, y_train, y_test = prepare_feature_matrices(
+    # vectorizer, x_train, x_test, y_train, y_test = prepare_feature_matrices(
+    #     train_dataset=train_dataset,
+    #     test_dataset=test_dataset,
+    # )
+
+    embedder, x_train, x_test, y_train, y_test = prepare_feature_matrices(
         train_dataset=train_dataset,
         test_dataset=test_dataset,
     )
@@ -350,14 +380,16 @@ def main() -> None:
     best_vectorizer_output_path = get_best_vectorizer_output_path()
 
     save_pickle_object(best_model_result["model_object"], best_model_output_path)
-    save_pickle_object(vectorizer, best_vectorizer_output_path)
+    # save_pickle_object(vectorizer, best_vectorizer_output_path)
+    save_pickle_object(embedder, best_vectorizer_output_path)
 
     training_report = build_training_report(
         model_result_list=model_result_list,
         best_model_result=best_model_result,
         train_dataset=train_dataset,
         test_dataset=test_dataset,
-        vectorizer=vectorizer,
+        # vectorizer=vectorizer,
+        embedder=embedder
     )
     save_training_report(training_report)
 

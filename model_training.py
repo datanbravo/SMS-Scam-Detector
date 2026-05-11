@@ -95,7 +95,7 @@ def prepare_feature_matrices(
     test_dataset: pd.DataFrame,
 ) -> tuple[TfidfVectorizer, Any, Any, pd.Series, pd.Series]:
     # Fit the vectorizer on training text, then transform train and test text.
-    embedder = build_vectorizer()
+    embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
     train_text_list = train_dataset[training_text_column].fillna("").astype(str).tolist()
     test_text_list = test_dataset[training_text_column].fillna("").astype(str).tolist()

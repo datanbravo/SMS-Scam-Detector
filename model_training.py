@@ -26,11 +26,6 @@ from model_config import (
     svm_regularization_strength,
     svm_kernel,
     test_dataset_path,
-    tfidf_lowercase,
-    tfidf_max_features,
-    tfidf_min_document_frequency,
-    tfidf_ngram_range,
-    tfidf_token_pattern,
     train_dataset_path,
     training_label_column,
     training_random_seed,
@@ -92,7 +87,7 @@ def prepare_feature_matrices(
     train_dataset: pd.DataFrame,
     test_dataset: pd.DataFrame,
 ) -> tuple[SentenceTransformer, Any, Any, pd.Series, pd.Series]:
-    # Fit the vectorizer on training text, then transform train and test text.
+    # Fit the embedder on training text, then encode train and test text.
     embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
     train_text_list = train_dataset[training_text_column].fillna("").astype(str).tolist()

@@ -85,15 +85,13 @@ def validate_training_inputs(train_dataset: pd.DataFrame, test_dataset: pd.DataF
 # text vectorization
 # ------------------------------------------------------------
 
-def build_vectorizer() -> SentenceTransformer:
-    # Create the SBERT vectorizer sentence-transformer.
-    return SentenceTransformer()
+###
 
 
 def prepare_feature_matrices(
     train_dataset: pd.DataFrame,
     test_dataset: pd.DataFrame,
-) -> tuple[TfidfVectorizer, Any, Any, pd.Series, pd.Series]:
+) -> tuple[SentenceTransformer, Any, Any, pd.Series, pd.Series]:
     # Fit the vectorizer on training text, then transform train and test text.
     embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 

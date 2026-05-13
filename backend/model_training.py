@@ -10,6 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
+from sentence_transformers import SentenceTransformer
 
 from model_config import (
     decision_tree_max_depth,
@@ -25,11 +26,6 @@ from model_config import (
     svm_regularization_strength,
     svm_kernel,
     test_dataset_path,
-    tfidf_lowercase,
-    tfidf_max_features,
-    tfidf_min_document_frequency,
-    tfidf_ngram_range,
-    tfidf_token_pattern,
     train_dataset_path,
     training_label_column,
     training_random_seed,
@@ -43,12 +39,14 @@ from model_config import (
 # ------------------------------------------------------------
 
 def load_dataset(dataset_path: str | Any) -> pd.DataFrame:
-    # Load one csv dataset.
+    # Load a CSV dataset from the provided path
+    # and return it as a pandas DataFrame.
     return pd.read_csv(dataset_path)
 
 
 def validate_dataset_columns(dataset: pd.DataFrame, dataset_name: str) -> None:
-    # Make sure the required training columns exist.
+    # Verify the dataset contains the required text
+    # and label columns and its not empty
     required_columns = [training_text_column, training_label_column]
 
     missing_columns = [
@@ -67,7 +65,7 @@ def validate_dataset_columns(dataset: pd.DataFrame, dataset_name: str) -> None:
 
 
 def validate_training_inputs(train_dataset: pd.DataFrame, test_dataset: pd.DataFrame) -> None:
-    # Validate both train and test datasets before training starts.
+    # Validate both train and test datasets before starting feature extraction and training.
     validate_dataset_columns(train_dataset, "train_dataset")
     validate_dataset_columns(test_dataset, "test_dataset")
 
@@ -82,34 +80,26 @@ def validate_training_inputs(train_dataset: pd.DataFrame, test_dataset: pd.DataF
 # text vectorization
 # ------------------------------------------------------------
 
-def build_vectorizer() -> TfidfVectorizer:
-    # Create the TF-IDF vectorizer using the project settings.
-    return TfidfVectorizer(
-        max_features=tfidf_max_features,
-        min_df=tfidf_min_document_frequency,
-        ngram_range=tfidf_ngram_range,
-        lowercase=tfidf_lowercase,
-        token_pattern=tfidf_token_pattern,
-    )
+###
 
 
 def prepare_feature_matrices(
     train_dataset: pd.DataFrame,
     test_dataset: pd.DataFrame,
-) -> tuple[TfidfVectorizer, Any, Any, pd.Series, pd.Series]:
-    # Fit the vectorizer on training text, then transform train and test text.
-    vectorizer = build_vectorizer()
+) -> tuple[SentenceTransformer, Any, Any, pd.Series, pd.Series]:
+    # Fit the embedder on training text, then encode train and test text.
+    embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
     train_text_list = train_dataset[training_text_column].fillna("").astype(str).tolist()
     test_text_list = test_dataset[training_text_column].fillna("").astype(str).tolist()
 
-    x_train = vectorizer.fit_transform(train_text_list)
-    x_test = vectorizer.transform(test_text_list)
+    x_train = embedder.encode(train_text_list)
+    x_test = embedder.encode(test_text_list)
 
     y_train = train_dataset[training_label_column].astype(int)
     y_test = test_dataset[training_label_column].astype(int)
 
-    return vectorizer, x_train, x_test, y_train, y_test
+    return embedder, x_train, x_test, y_train, y_test
 
 
 # ------------------------------------------------------------
@@ -118,6 +108,8 @@ def prepare_feature_matrices(
 
 def build_logistic_regression_model() -> LogisticRegression:
     # Logistic Regression is a strong baseline for text classification.
+    # Build and return a Logistic Regression model
+    # configured for text classification tasks. 
     return LogisticRegression(
         C=logistic_regression_regularization_strength,
         max_iter=logistic_regression_max_iterations,
@@ -127,6 +119,8 @@ def build_logistic_regression_model() -> LogisticRegression:
 
 def build_decision_tree_model() -> DecisionTreeClassifier:
     # Decision Tree is useful as a class-aligned comparison model.
+    # Build and return a Decision Tree classifier
+    # for comparison against other models.
     return DecisionTreeClassifier(
         max_depth=decision_tree_max_depth,
         min_samples_leaf=decision_tree_min_samples_leaf,
@@ -136,6 +130,8 @@ def build_decision_tree_model() -> DecisionTreeClassifier:
 
 def build_svm_model() -> SVC:
     # Linear SVM is often strong for sparse text features like TF-IDF.
+    # Build and return a Support Vector Machine model
+    # optimized for sparse TF-IDF feature vectors.  
     return SVC(
         C=svm_regularization_strength,
         kernel=svm_kernel,
@@ -194,7 +190,8 @@ def train_and_evaluate_one_model(
     x_test: Any,
     y_test: pd.Series,
 ) -> dict[str, Any]:
-    # Fit one model and evaluate it on the test set.
+    # Train a single model, generate predictions, 
+    # and evaluate its performance on test data.
     model.fit(x_train, y_train)
     predicted_labels = model.predict(x_test)
 
@@ -241,9 +238,10 @@ def build_training_report(
     best_model_result: dict[str, Any],
     train_dataset: pd.DataFrame,
     test_dataset: pd.DataFrame,
-    vectorizer: TfidfVectorizer,
+    embedder: SentenceTransformer,
 ) -> dict[str, Any]:
     # Build a small JSON report summarizing the training run.
+    # containing dataset, vectorizer, and model results.
     return {
         "training_text_column": training_text_column,
         "training_label_column": training_label_column,
@@ -251,14 +249,7 @@ def build_training_report(
         "test_row_count": int(len(test_dataset)),
         "enabled_models": enabled_model_names,
         "primary_metric_name": primary_metric_name,
-        "vectorizer_settings": {
-            "max_features": tfidf_max_features,
-            "min_document_frequency": tfidf_min_document_frequency,
-            "ngram_range": list(tfidf_ngram_range),
-            "lowercase": tfidf_lowercase,
-            "token_pattern": tfidf_token_pattern,
-        },
-        "vocabulary_size": int(len(vectorizer.vocabulary_)),
+        #tf-idf settings were placed here
         "model_results": [
             {
                 "model_name": model_result["model_name"],
@@ -313,7 +304,9 @@ def print_model_results(model_result_list: list[dict[str, Any]], best_model_resu
 # ------------------------------------------------------------
 
 def main() -> None:
-    # Run the full model training pipeline.
+    # Run the full model training pipeline:
+    # dataset loading, validation, vectorization,
+    # model training, evaluation, and output saving.
     ensure_model_output_directories_exist()
 
     train_dataset = load_dataset(train_dataset_path)
@@ -321,7 +314,7 @@ def main() -> None:
 
     validate_training_inputs(train_dataset, test_dataset)
 
-    vectorizer, x_train, x_test, y_train, y_test = prepare_feature_matrices(
+    embedder, x_train, x_test, y_train, y_test = prepare_feature_matrices(
         train_dataset=train_dataset,
         test_dataset=test_dataset,
     )
@@ -346,14 +339,14 @@ def main() -> None:
     best_vectorizer_output_path = get_best_vectorizer_output_path()
 
     save_pickle_object(best_model_result["model_object"], best_model_output_path)
-    save_pickle_object(vectorizer, best_vectorizer_output_path)
+    save_pickle_object(embedder, best_vectorizer_output_path)
 
     training_report = build_training_report(
         model_result_list=model_result_list,
         best_model_result=best_model_result,
         train_dataset=train_dataset,
         test_dataset=test_dataset,
-        vectorizer=vectorizer,
+        embedder=embedder,
     )
     save_training_report(training_report)
 

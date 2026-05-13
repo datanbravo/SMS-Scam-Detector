@@ -111,6 +111,13 @@ export default function Dashboard() {
         }
       });
 
+    const pollingTimer = window.setInterval(() => {
+      fetch(`${API_BASE_URL}/api/messages`)
+        .then((reply) => (reply.ok ? reply.json() : []))
+        .then((data) => setAllMessages(Array.isArray(data) ? data : []))
+        .catch(() => {});
+    }, 3000);
+
     function clearReconnectTimer() {
       if (timerSpot.current) {
         window.clearTimeout(timerSpot.current);
@@ -187,6 +194,7 @@ export default function Dashboard() {
       keepTrying = false;
       stopFetch.abort();
       clearReconnectTimer();
+      window.clearInterval(pollingTimer);
       setIsConnected(false);
 
       const oldSocket = socketSpot.current;

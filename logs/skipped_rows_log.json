@@ -1,0 +1,2831 @@
+[
+  {
+    "source_name": "federal_trade_commission_consumer_text_scam_examples",
+    "source_url": "https://consumer.ftc.gov/consumer-alerts/2024/01/irs-doesnt-send-tax-refunds-email-or-text",
+    "reason": "No explicit message examples were extracted from the page.",
+    "failure_category": "empty_extraction_result",
+    "message_preview": ""
+  },
+  {
+    "source_name": "federal_trade_commission_consumer_text_scam_examples",
+    "source_url": "https://consumer.ftc.gov/consumer-alerts/2024/05/text-about-overdue-toll-charges-probably-scam",
+    "reason": "No explicit message examples were extracted from the page.",
+    "failure_category": "empty_extraction_result",
+    "message_preview": ""
+  },
+  {
+    "source_name": "federal_trade_commission_consumer_text_scam_examples",
+    "source_url": "https://consumer.ftc.gov/consumer-alerts/2025/04/think-text-message-usps-it-could-be-scam",
+    "reason": "No explicit message examples were extracted from the page.",
+    "failure_category": "empty_extraction_result",
+    "message_preview": ""
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Message text was shorter than the minimum allowed length.",
+    "message_preview": "Ok"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Message text was shorter than the minimum allowed length.",
+    "message_preview": "Ok"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Message text was shorter than the minimum allowed length.",
+    "message_preview": ":)"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Message text was shorter than the minimum allowed length.",
+    "message_preview": "Ok"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Message text became empty after cleaning.",
+    "message_preview": ":-) :-)"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Message text was shorter than the minimum allowed length.",
+    "message_preview": "Ok"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "As per your request 'Melle Melle (Oru Minnaminunginte Nurungu Vettam)' has been set as your callertune for all Callers. "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "As per your request 'Melle Melle (Oru Minnaminunginte Nurungu Vettam)' has been set as your callertune for all Callers. "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "As I entered my cabin my PA said, '' Happy B'day Boss !!''. I felt special. She askd me 4 lunch. After lunch she invited"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No calls..messages..missed calls"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Congratulations ur awarded 500 of CD vouchers or 125gift guaranteed & Free entry 2 100 wkly draw txt MUSIC to 87066 TnCs"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Congrats! 1 year special cinema pass for 2 is yours. call 09061209465 now! C Suprman V, Matrix3, StarWars3, etc all 4 FR"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Gudnite....tc...practice going on"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "GENT! We are trying to contact you. Last weekends draw shows that you won a \u00a31000 prize GUARANTEED. Call 09064012160. Cl"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Did u got that persons story"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You will be in the place of that man"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Just sleeping..and surfing"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Your opinion about me? 1. Over 2. Jada 3. Kusruthi 4. Lovable 5. Silent 6. Spl character 7. Not matured 8. Stylish 9. Si"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Gud mrng dear hav a nice day"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Have a good evening! Ttyl"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Today's Offer! Claim ur \u00a3150 worth of discount vouchers! Text YES to 85023 now! SavaMob, member offers mobile! T Cs 0871"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Your free ringtone is waiting to be collected. Simply text the password \"MIX\" to 85069 to verify. Get Usher and Britney."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Watching cartoon, listening music &amp; at eve had to go temple &amp; church.. What about u?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Are you this much buzy"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Please call our customer service representative on FREEPHONE 0808 145 4742 between 9am-11pm as you have WON a guaranteed"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Yes..he is really great..bhaji told kallis best cricketer after sachin in world:).very tough to get out."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Easy ah?sen got selected means its good.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Good morning princess! How are you?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "As I entered my cabin my PA said, '' Happy B'day Boss !!''. I felt special. She askd me 4 lunch. After lunch she invited"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Message:some text missing* Sender:Name Missing* *Number Missing *Sent:Date missing *Missing U a lot thats y everything i"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt r"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "New Theory: Argument wins d SITUATION, but loses the PERSON. So dont argue with ur friends just.. . . . kick them &amp; "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "He also knows about lunch menu only da. . I know"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You have 1 new voicemail. Please call 08719181513."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You are a winner U have been specially selected 2 receive \u00a31000 cash or a 4* holiday (flights inc) speak to a live opera"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Your opinion about me? 1. Over 2. Jada 3. Kusruthi 4. Lovable 5. Silent 6. Spl character 7. Not matured 8. Stylish 9. Si"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I call you later, don't have network. If urgnt, sms me."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ummmmmaah Many many happy returns of d day my dear sweet heart.. HAPPY BIRTHDAY dear"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Convey my regards to him"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No. 1 Nokia Tone 4 ur mob every week! Just txt NOK to 87021. 1st Tone FREE ! so get txtin now and tell ur friends. 150p/"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Thats cool! I am a gentleman and will treat you with dignity and respect."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You have registered Sinco as Payee. Log in at icicibank.com and enter URN  &lt;#&gt;  to confirm. Beware of frauds. Do N"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wen ur lovable bcums angry wid u, dnt take it seriously.. Coz being angry is d most childish n true way of showing deep "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Fighting with the world is easy, u either win or lose bt fightng with some1 who is close to u is dificult if u lose - u "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Your account has been refilled successfully by INR  &lt;DECIMAL&gt; . Your KeralaCircle prepaid account balance is Rs  &"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wen ur lovable bcums angry wid u, dnt take it seriously.. Coz being angry is d most childish n true way of showing deep "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Today is ACCEPT DAY..U Accept me as? Brother Sister Lover Dear1 Best1 Clos1 Lvblefrnd Jstfrnd Cutefrnd Lifpartnr Belovd "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "U have a secret admirer who is looking 2 make contact with U-find out who they R*reveal who thinks UR so special-call on"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wishing you and your family Merry \"X\" mas and HAPPY NEW Year in advance.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Today is \"song dedicated day..\" Which song will u dedicate for me? Send this to all ur valuable frnds but first rply me."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sunshine Quiz Wkly Q! Win a top Sony DVD player if u know which country the Algarve is in? Txt ansr to 82277. \u00a31.50 SP:T"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Fighting with the world is easy, u either win or lose bt fightng with some1 who is close to u is dificult if u lose - u "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "7 wonders in My WORLD 7th You 6th Ur style 5th Ur smile 4th Ur Personality 3rd Ur Nature 2nd Ur SMS and 1st \"Ur Lovely F"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Loan for any purpose \u00a3500 - \u00a375,000. Homeowners + Tenants welcome. Have you been previously refused? We can still help. "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Dont search love, let love find U. Thats why its called falling in love, bcoz U dont force yourself, U just fall and U k"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wat makes some people dearer is not just de happiness dat u feel when u meet them but de pain u feel when u miss dem!!!"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "May i call You later Pls"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "HMV BONUS SPECIAL 500 pounds of genuine HMV vouchers to be won. Just answer 4 easy questions. Play Now! Send HMV to 8668"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Watching tv now. I got new job :)"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "U have a secret admirer who is looking 2 make contact with U-find out who they R*reveal who thinks UR so special-call on"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Good Morning plz call me sir"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "K...k:)why cant you come here and search job:)"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Guess what! Somebody you know secretly fancies you! Wanna find out who it is? Give us a call on 09065394973 from Landlin"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Yes :)it completely in out of form:)clark also utter waste."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I had askd u a question some hours before. Its answer"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I wnt to buy a BMW car urgently..its vry urgent.but hv a shortage of  &lt;#&gt; Lacs.there is no source to arng dis amt."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No calls..messages..missed calls"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Shall i come to get pickle"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Goodmorning, today i am late for  &lt;DECIMAL&gt; min."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "4mths half price Orange line rental & latest camera phones 4 FREE. Had your phone 11mths ? Call MobilesDirect free on 08"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Eerie Nokia tones 4u, rply TONE TITLE to 8007 eg TONE DRACULA to 8007 Titles: GHOST, ADDAMSFA, MUNSTERS, EXORCIST, TWILI"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "PRIVATE! Your 2004 Account Statement for 07742676969 shows 786 unredeemed Bonus Points. To claim call 08719180248 Identi"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "FREE2DAY sexy St George's Day pic of Jordan!Txt PIC to 89080 dont miss out, then every wk a saucy celeb!4 more pics c Po"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "U can WIN \u00a3100 of Music Gift Vouchers every week starting NOW Txt the word DRAW to 87066 TsCs www.Idew.com SkillGame, 1W"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "+123 Congratulations - in this week's competition draw u have won the \u00a31450 prize to claim just call 09050002311 b428070"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Beautiful Truth against Gravity.. Read carefully: \"Our heart feels light when someone is in it.. But it feels very heavy"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "If he started searching he will get job in few days.he have great potential and talent."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sunshine Hols. To claim ur med holiday send a stamped self address envelope to Drinks on Us UK, PO Box 113, Bray, Wicklo"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "1) Go to write msg 2) Put on Dictionary mode 3)Cover the screen with hand, 4)Press  &lt;#&gt; . 5)Gently remove Ur hand."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Shop till u Drop, IS IT YOU, either 10K, 5K, \u00a3500 Cash or \u00a3100 Travel voucher, Call now, 09064011000. NTT PO Box CR01327"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I'm at work. Please call"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Prabha..i'm soryda..realy..frm heart i'm sory"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Good Morning plz call me sir"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok . . now i am in bus. . If i come soon i will come otherwise tomorrow"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Love you aathi..love u lot.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later in meeting"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Congrats! 1 year special cinema pass for 2 is yours. call 09061209465 now! C Suprman V, Matrix3, StarWars3, etc all 4 FR"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "WIN a year supply of CDs 4 a store of ur choice worth \u00a3500 & enter our \u00a3100 Weekly draw txt MUSIC to 87066 Ts&Cs www.Lde"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You have won a Nokia 7250i. This is what you get when you win our FREE auction. To take part send Nokia to 86021 now. HG"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "The Xmas story is peace.. The Xmas msg is love.. The Xmas miracle is jesus.. Hav a blessed month ahead &amp; wish U Merr"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "1) Go to write msg 2) Put on Dictionary mode 3)Cover the screen with hand, 4)Press  &lt;#&gt; . 5)Gently remove Ur hand."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Okie..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You will be in the place of that man"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Please CALL 08712402902 immediately as there is an urgent message waiting for you."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "How are you doing? Hope you've settled in for the new school year. Just wishin you a gr8 day"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I don't know u and u don't know me. Send CHAT to 86688 now and let's find each other! Only 150p/Msg rcvd. HG/Suite342/2L"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Valentines Day Special! Win over \u00a31000 in our quiz and take your partner on the trip of a lifetime! Send GO to 83600 now"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Final Chance! Claim ur \u00a3150 worth of discount vouchers today! Text YES to 85023 now! SavaMob, member offers mobile! T Cs"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "i dnt wnt to tlk wid u"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Yup..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Joy's father is John. Then John is the NAME of Joy's father. Mandan"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Say this slowly.? GOD,I LOVE YOU &amp; I NEED YOU,CLEAN MY HEART WITH YOUR BLOOD.Send this to Ten special people &amp; u"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "K..k..i'm also fine:)when will you complete the course?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Under the sea, there lays a rock. In the rock, there is an envelope. In the envelope, there is a paper. On the paper, th"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sunshine Quiz Wkly Q! Win a top Sony DVD player if u know which country Liverpool played in mid week? Txt ansr to 82277."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Okie"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "As usual..iam fine, happy &amp; doing well..:)"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok lor..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You are guaranteed the latest Nokia Phone, a 40GB iPod MP3 player or a \u00a3500 prize! Txt word: COLLECT to No: 83355! IBHlt"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hi! You just spoke to MANEESHA V. We'd like to know if you were satisfied with the experience. Reply Toll Free with Yes "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Solve d Case : A Man Was Found Murdered On  &lt;DECIMAL&gt; . &lt;#&gt;  AfterNoon. 1,His wife called Police. 2,Police q"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Okie"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wen ur lovable bcums angry wid u, dnt take it seriously.. Coz being angry is d most childish n true way of showing deep "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Okie.. Thanx.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "18 days to Euro2004 kickoff! U will be kept informed of all the latest news and results daily. Unsubscribe send GET EURO"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok lor..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Whatsup there. Dont u want to sleep"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Are you this much buzy"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I don't know u and u don't know me. Send CHAT to 86688 now and let's find each other! Only 150p/Msg rcvd. HG/Suite342/2L"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I dont thnk its a wrong calling between us"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I am not sure about night menu. . . I know only about noon menu"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Say this slowly.? GOD,I LOVE YOU &amp; I NEED YOU,CLEAN MY HEART WITH YOUR BLOOD.Send this to Ten special people &amp; u"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "For ur chance to win a \u00a3250 cash every wk TXT: ACTION to 80608. T's&C's www.movietrivia.tv custcare 08712405022, 1x150p/"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Tell your friends what you plan to do on Valentines day @ &lt;URL&gt;"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Purity of friendship between two is not about smiling after reading the forwarded message..Its about smiling just by see"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "December only! Had your mobile 11mths+? You are entitled to update to the latest colour camera mobile for Free! Call The"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Say this slowly.? GOD,I LOVE YOU &amp; I NEED YOU,CLEAN MY HEART WITH YOUR BLOOD.Send this to Ten special people &amp; u"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Congratulations - Thanks to a good friend U have WON the \u00a32,000 Xmas prize. 2 claim is easy, just call 08712103738 NOW! "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok lor..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wife.how she knew the time of murder exactly"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Send a logo 2 ur lover - 2 names joined by a heart. Txt LOVE NAME1 NAME2 MOBNO eg LOVE ADAM EVE 07123456789 to 87077 Yah"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Howz that persons story"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "aathi..where are you dear.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sad story of a Man - Last week was my b'day. My Wife did'nt wish me. My Parents forgot n so did my Kids . I went to work"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Do you know why god created gap between your fingers..? So that, One who is made for you comes &amp; fills those gaps by"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "He says hi and to get your ass back to south tampa (preferably at a kegger)"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "House-Maid is the murderer, coz the man was murdered on  &lt;#&gt; th January.. As public holiday all govt.instituitions"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "YOUR CHANCE TO BE ON A REALITY FANTASY SHOW call now = 08707509020 Just 20p per min NTT Ltd, PO Box 1327 Croydon CR9 5WB"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Last Chance! Claim ur \u00a3150 worth of discount vouchers today! Text SHOP to 85023 now! SavaMob, offers mobile! T Cs SavaMo"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "If you r @ home then come down within 5 min"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "URGENT! Your Mobile number has been awarded with a \u00a32000 prize GUARANTEED. Call 09058094454 from land line. Claim 3030. "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry,in meeting I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You have 1 new message. Please call 08712400200."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No message..no responce..what happend?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "U have a secret admirer. REVEAL who thinks U R So special. Call 09065174042. To opt out Reply REVEAL STOP. 1.50 per msg "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "NEFT Transaction with reference number  &lt;#&gt;  for Rs. &lt;DECIMAL&gt;  has been credited to the beneficiary account"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Height of Confidence: All the Aeronautics professors wer calld &amp; they wer askd 2 sit in an aeroplane. Aftr they sat "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "7 wonders in My WORLD 7th You 6th Ur style 5th Ur smile 4th Ur Personality 3rd Ur Nature 2nd Ur SMS and 1st \"Ur Lovely F"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Love isn't a decision, it's a feeling. If we could decide who to love, then, life would be much simpler, but then less m"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "HOT LIVE FANTASIES call now 08707509020 Just 20p per min NTT Ltd, PO Box 1327 Croydon CR9 5WB 0870 is a national rate ca"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I will see in half an hour"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You've won tkts to the EURO2004 CUP FINAL or \u00a3800 CASH, to collect CALL 09058099801 b4190604, POBOX 7876150ppm"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Loan for any purpose \u00a3500 - \u00a375,000. Homeowners + Tenants welcome. Have you been previously refused? We can still help. "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Raji..pls do me a favour. Pls convey my Birthday wishes to Nimya. Pls. Today is her birthday."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wishing you and your family Merry \"X\" mas and HAPPY NEW Year in advance.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "EASTENDERS TV Quiz. What FLOWER does DOT compare herself to? D= VIOLET E= TULIP F= LILY txt D E or F to 84025 NOW 4 chan"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "What Today-sunday..sunday is holiday..so no work.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Tessy..pls do me a favor. Pls convey my birthday wishes to Nimya..pls dnt forget it. Today is her birthday Shijas"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Free entry in 2 a weekly comp for a chance to win an ipod. Txt POD to 80182 to get entry (std txt rate) T&C's apply 0845"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "My uncles in Atlanta. Wish you guys a great semester."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wat makes some people dearer is not just de happiness dat u feel when u meet them but de pain u feel when u miss dem!!!"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Customer place i will call you"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hard LIVE 121 chat just 60p/min. Choose your girl and connect LIVE. Call 09094646899 now! Cheap Chat UK's biggest live s"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Not heard from U4 a while. Call 4 rude chat private line 01223585334 to cum. Wan 2C pics of me gettin shagged then text "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "TODAY is Sorry day.! If ever i was angry with you, if ever i misbehaved or hurt you? plz plz JUST SLAP URSELF Bcoz, Its "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "HOT LIVE FANTASIES call now 08707509020 Just 20p per min NTT Ltd, PO Box 1327 Croydon CR9 5WB 0870..k"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "When people see my msgs, They think Iam addicted to msging... They are wrong, Bcoz They don\\'t know that Iam addicted to"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "UR GOING 2 BAHAMAS! CallFREEFONE 08081560665 and speak to a live operator to claim either Bahamas cruise of\u00a32000 CASH 18"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Howz that persons story"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "This is the 2nd time we have tried 2 contact u. U have won the 750 Pound prize. 2 claim is easy, call 08712101358 NOW! O"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "UR awarded a City Break and could WIN a \u00a3200 Summer Shopping spree every WK. Txt STORE to 88039.SkilGme.TsCs087147403231"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Nice.nice.how is it working?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wife.how she knew the time of murder exactly"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "SIX chances to win CASH! From 100 to 20,000 pounds txt> CSH11 and send to 87575. Cost 150p/day, 6days, 16+ TsandCs apply"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Good Morning my Dear........... Have a great &amp; successful day."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I can't help you on this."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Congratulations! Thanks to a good friend U have WON the \u00a32,000 Xmas prize. 2 claim is easy, just call 08718726978 NOW! O"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You have 1 new voicemail. Please call 08719181513."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Solve d Case : A Man Was Found Murdered On  &lt;DECIMAL&gt; . &lt;#&gt;  AfterNoon. 1,His wife called Police. 2,Police q"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "This message is free. Welcome to the new & improved Sex & Dogging club! To unsubscribe from this service reply STOP. msg"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Honeybee Said: *I'm d Sweetest in d World* God Laughed &amp; Said: *Wait,U Havnt Met d Person Reading This Msg* MORAL: E"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Oh ho. Is this the first time u use these type of words"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "FREE MESSAGE Activate your 500 FREE Text Messages by replying to this message with the word FREE For terms & conditions,"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "She said,'' do u mind if I go into the bedroom for a minute ? '' ''OK'', I sed in a sexy mood. She came out 5 minuts lat"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I don't run away frm u... I walk slowly &amp; it kills me that u don't care enough to stop me..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Please CALL 08712402972 immediately as there is an urgent message waiting for you"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I'm in a meeting, call me later at"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok thanx..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "As a valued customer, I am pleased to advise you that following recent review of your Mob No. you are awarded with a \u00a315"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Good night my dear.. Sleepwell&amp;Take care"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Beautiful Truth against Gravity.. Read carefully: \"Our heart feels light when someone is in it.. But it feels very heavy"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "He remains a bro amongst bros"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "As a valued customer, I am pleased to advise you that following recent review of your Mob No. you are awarded with a \u00a315"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Camera - You are awarded a SiPix Digital Camera! call 09061221066 fromm landline. Delivery within 28 days."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "wiskey Brandy Rum Gin Beer Vodka Scotch Shampain Wine \"KUDI\"yarasu dhina vaazhthukkal. .."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I dont have any of your file in my bag..i was in work when you called me.i 'll tell you if i find anything in my room."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Friendship poem: Dear O Dear U R Not Near But I Can Hear Dont Get Fear Live With Cheer No More Tear U R Always my Dear. "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "URGENT! We are trying to contact U. Todays draw shows that you have won a \u00a3800 prize GUARANTEED. Call 09050001808 from l"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "aathi..where are you dear.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Night has ended for another day, morning has come in a special way. May you smile like the sunny rays and leaves your wo"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No:-)i got rumour that you going to buy apartment in chennai:-)"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Still i have not checked it da. . ."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You are being contacted by our dating service by someone you know! To find out who it is, call from a land line 09050000"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Single line with a big meaning::::: \"Miss anything 4 ur \"Best Life\" but, don't miss ur best life for anything... Gud nyt"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hi 07734396839 IBH Customer Loyalty Offer: The NEW NOKIA6600 Mobile from ONLY \u00a310 at TXTAUCTION!Txt word:START to No:811"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Heart is empty without love.. Mind is empty without wisdom.. Eyes r empty without dreams &amp; Life is empty without frn"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Joy's father is John. Then John is the ____ of Joy's father. If u ans ths you hav  &lt;#&gt;  IQ. Tis s IAS question try"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No message..no responce..what happend?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Still chance there. If you search hard you will get it..let have a try :)"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Meeting u is my work. . . Tel me when shall i do my work tomorrow"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "As per your request 'Maangalyam (Alaipayuthe)' has been set as your callertune for all Callers. Press *9 to copy your fr"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You have won a Nokia 7250i. This is what you get when you win our FREE auction. To take part send Nokia to 86021 now. HG"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Stupid.its not possible"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No i am not having not any movies in my laptop"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Free Top ringtone -sub to weekly ringtone-get 1st week free-send SUBPOLY to 81618-?3 per week-stop sms-08718727870"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok.ok ok..then..whats ur todays plan"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I'm at home. Please call"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Gud mrng dear hav a nice day"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No da. . Vijay going to talk in jaya tv"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Bloomberg -Message center +447797706009 Why wait? Apply for your future http://careers. bloomberg.com"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Yes:)here tv is always available in work place.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "YES! The only place in town to meet exciting adult singles is now in the UK. Txt CHAT to 86688 now! 150p/Msg."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "FREE for 1st week! No1 Nokia tone 4 ur mob every week just txt NOKIA to 8007 Get txting and tell ur mates www.getzed.co."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Was gr8 to see that message. So when r u leaving? Congrats dear. What school and wat r ur plans."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hi! You just spoke to MANEESHA V. We'd like to know if you were satisfied with the experience. Reply Toll Free with Yes "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wat r u doing?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Feb  &lt;#&gt;  is \"I LOVE U\" day. Send dis to all ur \"VALUED FRNDS\" evn me. If 3 comes back u'll gt married d person u "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I had askd u a question some hours before. Its answer"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Fantasy Football is back on your TV. Go to Sky Gamestar on Sky Active and play \u00a3250k Dream Team. Scoring starts on Satur"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Win the newest \u0093Harry Potter and the Order of the Phoenix (Book 5) reply HARRY, answer 5 questions - chance to be the fi"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Can you plz tell me the ans. BSLVYL sent via fullonsms.com"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Short But Cute: \"Be a good person, but dont try to prove it..\" .Gud noon...."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Otherwise had part time job na-tuition.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Okie"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You have an important customer service announcement. Call FREEPHONE 0800 542 0825 now!"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Today is ACCEPT DAY..U Accept me as? Brother Sister Lover Dear1 Best1 Clos1 Lvblefrnd Jstfrnd Cutefrnd Lifpartnr Belovd "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Do 1 thing! Change that sentence into: \"Because i want 2 concentrate in my educational career im leaving here..\""
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I got a call from a landline number. . . I am asked to come to anna nagar . . . I will go in the afternoon"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Love you aathi..love u lot.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Great NEW Offer - DOUBLE Mins & DOUBLE Txt on best Orange tariffs AND get latest camera phones 4 FREE! Call MobileUpd8 f"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Friendship is not a game to play, It is not a word to say, It doesn\\'t start on March and ends on May, It is tomorrow, y"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I am on the way to ur home"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "somewhere out there beneath the pale moon light someone think in of u some where out there where dreams come true... goo"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Wan2 win a Meet+Greet with Westlife 4 U or a m8? They are currently on what tour? 1)Unbreakable, 2)Untamed, 3)Unkempt. T"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Please call our customer service representative on FREEPHONE 0808 145 4742 between 9am-11pm as you have WON a guaranteed"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Please call our customer service representative on FREEPHONE 0808 145 4742 between 9am-11pm as you have WON a guaranteed"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "God picked up a flower and dippeditinaDEW, lovingly touched itwhichturnedinto u, and the he gifted tomeandsaid,THIS FRIE"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No no. I will check all rooms befor activities"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok then i will come to ur home after half an hour"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "U have a secret admirer who is looking 2 make contact with U-find out who they R*reveal who thinks UR so special-call on"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "HOT LIVE FANTASIES call now 08707500020 Just 20p per min NTT Ltd, PO Box 1327 Croydon CR9 5WB 0870 is a national rate ca"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "What you doing?how are you?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I dont thnk its a wrong calling between us"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ever green quote ever told by Jerry in cartoon \"A Person Who Irritates u Always Is the one Who Loves u Vry Much But Fail"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "URGENT!! Your 4* Costa Del Sol Holiday or \u00a35000 await collection. Call 09050090044 Now toClaim. SAE, TC s, POBox334, Sto"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mo"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Congrats! Nokia 3650 video camera phone is your Call 09066382422 Calls cost 150ppm Ave call 3mins vary from mobiles 16+ "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later in meeting"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Double mins and txts 4 6months FREE Bluetooth on Orange. Available on Sony, Nokia Motorola phones. Call MobileUpd8 on 08"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "FREE for 1st week! No1 Nokia tone 4 ur mob every week just txt NOKIA to 8007 Get txting and tell ur mates www.getzed.co."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Want to funk up ur fone with a weekly new tone reply TONES2U 2 this text. www.ringtones.co.uk, the original n best. Tone"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I will come tomorrow di"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Plz note: if anyone calling from a mobile Co. &amp; asks u to type # &lt;#&gt;  or # &lt;#&gt; . Do not do so. Disconnec"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I'm at home. Please call"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Now only i reached home. . . I am very tired now. . I will come tomorro"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "U can WIN \u00a3100 of Music Gift Vouchers every week starting NOW Txt the word DRAW to 87066 TsCs www.Idew.com SkillGame, 1W"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Okie..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I am late. I will be there at"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sad story of a Man - Last week was my b'day. My Wife did'nt wish me. My Parents forgot n so did my Kids . I went to work"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "WINNER!! As a valued network customer you have been selected to receivea \u00a3900 prize reward! To claim call 09061701461. C"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "HMV BONUS SPECIAL 500 pounds of genuine HMV vouchers to be won. Just answer 4 easy questions. Play Now! Send HMV to 8668"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Please CALL 08712402578 immediately as there is an urgent message waiting for you"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "WELL DONE! Your 4* Costa Del Sol Holiday or \u00a35000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, St"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hurt me... Tease me... Make me cry... But in the end of my life when i die plz keep one rose on my grave and say STUPID "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Someone U know has asked our dating service 2 contact you! Cant Guess who? CALL 09058091854 NOW all will be revealed. PO"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I am not having her number sir"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "U 447801259231 have a secret admirer who is looking 2 make contact with U-find out who they R*reveal who thinks UR so sp"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Night has ended for another day, morning has come in a special way. May you smile like the sunny rays and leaves your wo"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I can't help you on this."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Purity of friendship between two is not about smiling after reading the forwarded message..Its about smiling just by see"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Do you want a New Nokia 3510i Colour Phone Delivered Tomorrow? With 200 FREE minutes to any mobile + 100 FREE text + FRE"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Do you know why god created gap between your fingers..? So that, One who is made for you comes &amp; fills those gaps by"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "The greatest test of courage on earth is to bear defeat without losing heart....gn tc"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sad story of a Man - Last week was my b'day. My Wife did'nt wish me. My Parents forgot n so did my Kids . I went to work"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok i msg u b4 i leave my house."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "House-Maid is the murderer, coz the man was murdered on  &lt;#&gt; th January.. As public holiday all govt.instituitions"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Urgent UR awarded a complimentary trip to EuroDisinc Trav, Aco&Entry41 Or \u00a31000. To claim txt DIS to 87121 18+6*\u00a31.50(mo"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Storming msg: Wen u lift d phne, u say \"HELLO\" Do u knw wt is d real meaning of HELLO?? . . . It's d name of a girl..! ."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ranjith cal drpd Deeraj and deepak 5min hold"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "She said,'' do u mind if I go into the bedroom for a minute ? '' ''OK'', I sed in a sexy mood. She came out 5 minuts lat"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I anything lor."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Stupid.its not possible"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Congrats! 2 mobile 3G Videophones R yours. call 09061744553 now! videochat wid ur mates, play java games, Dload polyH mu"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Never blame a day in ur life. Good days give u happiness. Bad days give u experience. Both are essential in life! All ar"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hope you are having a good week. Just checking in"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "7 wonders in My WORLD 7th You 6th Ur style 5th Ur smile 4th Ur Personality 3rd Ur Nature 2nd Ur SMS and 1st \"Ur Lovely F"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Honeybee Said: *I'm d Sweetest in d World* God Laughed &amp; Said: *Wait,U Havnt Met d Person Reading This Msg* MORAL: E"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Urgent! call 09066350750 from your landline. Your complimentary 4* Ibiza Holiday or 10,000 cash await collection SAE T&C"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "For ur chance to win a \u00a3250 wkly shopping spree TXT: SHOP to 80878. T's&C's www.txt-2-shop.com custcare 08715705022, 1x1"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Mila, age23, blonde, new in UK. I look sex with UK guys. if u like fun with me. Text MTALK to 69866.18 . 30pp/txt 1st 5f"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Tomorrow i am not going to theatre. . . So i can come wherever u call me. . . Tell me where and when to come tomorrow"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Well done ENGLAND! Get the official poly ringtone or colour flag on yer mobile! text TONE or FLAG to 84199 NOW! Opt-out "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later In meeting."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Please call our customer service representative on 0800 169 6031 between 10am-9pm as you have WON a guaranteed \u00a31000 cas"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I'm in a meeting, call me later at"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Oh ho. Is this the first time u use these type of words"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Did u got that persons story"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Please protect yourself from e-threats. SIB never asks for sensitive information like Passwords,ATM/SMS PIN thru email. "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hope you are having a great day."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I'm leaving my house now."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "My life Means a lot to me, Not because I love my life, But because I love the people in my life, The world calls them fr"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok no prob"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Tessy..pls do me a favor. Pls convey my birthday wishes to Nimya..pls dnt forget it. Today is her birthday Shijas"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Don no da:)whats you plan?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "WIN: We have a winner! Mr. T. Foley won an iPod! More exciting prizes soon, so keep an eye on ur mobile or visit www.win"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "My uncles in Atlanta. Wish you guys a great semester."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Buy Space Invaders 4 a chance 2 win orig Arcade Game console. Press 0 for Games Arcade (std WAP charge) See o2.co.uk/gam"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ya very nice. . .be ready on thursday"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I am in hospital da. . I will return home in evening"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Camera - You are awarded a SiPix Digital Camera! call 09061221066 fromm landline. Delivery within 28 days."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "URGENT! Your Mobile number has been awarded with a \u00a32000 prize GUARANTEED. Call 09061790121 from land line. Claim 3030. "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hi, Mobile no.  &lt;#&gt;  has added you in their contact list on www.fullonsms.com It s a great place to send free sms "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "So many people seems to be special at first sight, But only very few will remain special to you till your last sight.. M"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Reverse is cheating. That is not mathematics."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ummmmmaah Many many happy returns of d day my dear sweet heart.. HAPPY BIRTHDAY dear"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "YOU HAVE WON! As a valued Vodafone customer our computer has picked YOU to win a \u00a3150 prize. To collect is easy. Just ca"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I am in escape theatre now. . Going to watch KAVALAN in a few minutes"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Bored housewives! Chat n date now! 0871750.77.11! BT-national rate 10p/min only from landlines!"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Watching cartoon, listening music &amp; at eve had to go temple &amp; church.. What about u?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No 1 POLYPHONIC tone 4 ur mob every week! Just txt PT2 to 87575. 1st Tone FREE ! so get txtin now and tell ur friends. 1"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "New Theory: Argument wins d SITUATION, but loses the PERSON. So dont argue with ur friends just.. . . . kick them &amp; "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Todays Vodafone numbers ending with 4882 are selected to a receive a \u00a3350 award. If your number matches call 09064019014"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Japanese Proverb: If one Can do it, U too Can do it, If none Can do it,U must do it Indian version: If one Can do it, LE"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Convey my regards to him"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "This is the 2nd time we have tried 2 contact u. U have won the 750 Pound prize. 2 claim is easy, call 08712101358 NOW! O"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hi Dear Call me its urgnt. I don't know whats your problem. You don't want to work or if you have any other problem at l"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Got what it takes 2 take part in the WRC Rally in Oz? U can with Lucozade Energy! Text RALLY LE to 61200 (25p), see pack"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Great News! Call FREEFONE 08006344447 to claim your guaranteed \u00a31000 CASH or \u00a32000 gift. Speak to a live operator NOW!"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "A bit of Ur smile is my hppnss, a drop of Ur tear is my sorrow, a part of Ur heart is my life, a heart like mine wil car"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Yup ok..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "A boy was late 2 home. His father: \"POWER OF FRNDSHIP\""
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You have WON a guaranteed \u00a31000 cash or a \u00a32000 prize. To claim yr prize call our customer service representative on 087"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Dear 0776xxxxxxx U've been invited to XCHAT. This is our final attempt to contact u! Txt CHAT to 86688 150p/MsgrcvdHG/Su"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Is there coming friday is leave for pongal?do you get any news from your work place."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You won't believe it but it's true. It's Incredible Txts! Reply G now to learn truly amazing things that will blow your "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "We have sent JD for Customer Service cum Accounts Executive to ur mail id, For details contact us"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Edison has rightly said, \"A fool can ask more questions than a wise man can answer\" Now you know why all of us are speec"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Double Mins & Double Txt & 1/2 price Linerental on Latest Orange Bluetooth mobiles. Call MobileUpd8 for the very latest "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Free video camera phones with Half Price line rental for 12 mths and 500 cross ntwk mins 100 txts. Call MobileUpd8 08001"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I want to sent  &lt;#&gt; mesages today. Thats y. Sorry if i hurts"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Do you want a New Nokia 3510i colour phone DeliveredTomorrow? With 300 free minutes to any mobile + 100 free texts + Fre"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "No no. I will check all rooms befor activities"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "A Boy loved a gal. He propsd bt she didnt mind. He gv lv lttrs, Bt her frnds threw thm. Again d boy decided 2 aproach d "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I wnt to buy a BMW car urgently..its vry urgent.but hv a shortage of  &lt;#&gt; Lacs.there is no source to arng dis amt."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "The sign of maturity is not when we start saying big things.. But actually it is, when we start understanding small thin"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You have 1 new message. Please call 08715205273"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Get 3 Lions England tone, reply lionm 4 mono or lionp 4 poly. 4 more go 2 www.ringtones.co.uk, the original n best. Tone"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Rose for red,red for blood,blood for heart,heart for u. But u for me.... Send tis to all ur friends.. Including me.. If "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "FREE for 1st week! No1 Nokia tone 4 ur mobile every week just txt NOKIA to 8077 Get txting and tell ur mates. www.getzed"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Congrats 2 mobile 3G Videophones R yours. call 09063458130 now! videochat wid ur mates, play java games, Dload polypH mu"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Oh k. . I will come tomorrow"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Raji..pls do me a favour. Pls convey my Birthday wishes to Nimya. Pls. Today is her birthday."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Company is very good.environment is terrific and food is really nice:)"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I sent them. Do you like?"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Okie"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Spook up your mob with a Halloween collection of a logo & pic message plus a free eerie tone, txt CARD SPOOK to 8007 zed"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "YOU VE WON! Your 4* Costa Del Sol Holiday or \u00a35000 await collection. Call 09050090044 Now toClaim. SAE, TC s, POBox334, "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Me fine..absolutly fine"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I will reach ur home in  &lt;#&gt;  minutes"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Natalja (25/F) is inviting you to be her friend. Reply YES-440 or NO-440 See her: www.SMS.ac/u/nat27081980 STOP? Send ST"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I keep ten rs in my shelf:) buy two egg."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I am late. I will be there at"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Smile in Pleasure Smile in Pain Smile when trouble pours like Rain Smile when sum1 Hurts U Smile becoz SOMEONE still Lov"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Prabha..i'm soryda..realy..frm heart i'm sory"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "YOU ARE CHOSEN TO RECEIVE A \u00a3350 AWARD! Pls call claim number 09066364311 to collect your award which you are selected t"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Your opinion about me? 1. Over 2. Jada 3. Kusruthi 4. Lovable 5. Silent 6. Spl character 7. Not matured 8. Stylish 9. Si"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Its a part of checking IQ"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Gud ni8 dear..slp well..take care..swt dreams..Muah.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "As usual..iam fine, happy &amp; doing well..:)"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Storming msg: Wen u lift d phne, u say \"HELLO\" Do u knw wt is d real meaning of HELLO?? . . . It's d name of a girl..! ."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "If you don't, your prize will go to another customer. T&C at www.t-c.biz 18+ 150p/min Polo Ltd Suite 373 London W1J 6HL "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "URGENT! Your Mobile number has been awarded with a \u00a32000 prize GUARANTEED. Call 09061790126 from land line. Claim 3030. "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Helloooo... Wake up..! \"Sweet\" \"morning\" \"welcomes\" \"You\" \"Enjoy\" \"This Day\" \"with full of joy\".. \"GUD MRNG\"."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sent me ur email id soon"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "URGENT! You have won a 1 week FREE membership in our \u00a3100,000 Prize Jackpot! Txt the word: CLAIM to No: 81010 T&C www.db"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "At WHAT TIME should i come tomorrow"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Get the official ENGLAND poly ringtone or colour flag on yer mobile for tonights game! Text TONE or FLAG to 84199. Optou"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hahaha..use your brain dear"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "My Parents, My Kidz, My Friends n My Colleagues. All screaming.. SURPRISE !! and I was waiting on the sofa.. ... ..... '"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I'm home..."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Camera - You are awarded a SiPix Digital Camera! call 09061221066 fromm landline. Delivery within 28 days."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "A \u00a3400 XMAS REWARD IS WAITING FOR YOU! Our computer has randomly picked you from our loyal mobile customers to receive a"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Do u konw waht is rael FRIENDSHIP Im gving yuo an exmpel: Jsut ese tihs msg.. Evrey splleing of tihs msg is wrnog.. Bt s"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I cant pick the phone right now. Pls send a message"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I'm at work. Please call"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok.ok ok..then..whats ur todays plan"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Otherwise had part time job na-tuition.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Arun can u transfr me d amt"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "December only! Had your mobile 11mths+? You are entitled to update to the latest colour camera mobile for Free! Call The"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Get your garden ready for summer with a FREE selection of summer bulbs and seeds worth \u00a333:50 only with The Scotsman thi"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Ok lor."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Yup"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "What Today-sunday..sunday is holiday..so no work.."
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "K. I will sent it again"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "K. I will sent it again"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "SMS SERVICES. for your inclusive text credits, pls goto www.comuk.net login= 3qxj9 unsubscribe with STOP, no extra charg"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I went to project centre"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "You are awarded a SiPix Digital Camera! call 09061221061 from landline. Delivery within 28days. T Cs Box177. M221BP. 2yr"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "I know you are thinkin malaria. But relax, children cant handle malaria. She would have been worse and its gastroenterit"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Just sleeping..and surfing"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Had your contract mobile 11 Mnths? Latest Motorola, Nokia etc. all FREE! Double Mins & Text on Orange tariffs. TEXT YES "
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Hahaha..use your brain dear"
+  },
+  {
+    "source_name": "uc_irvine_sms_spam_collection",
+    "source_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Sorry, I'll call later"
+  },
+  {
+    "source_name": "synthetic_rule_based_scam_messages",
+    "source_url": "synthetic_rule_based_generation",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Your driving privileges will be suspended if you do not settle violation C-1842 immediately at https://example.com/claim"
+  },
+  {
+    "source_name": "synthetic_rule_based_scam_messages",
+    "source_url": "synthetic_rule_based_generation",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Final reminder: act now to avoid service interruption on case A-9033. Update your billing profile at https://example.com"
+  },
+  {
+    "source_name": "synthetic_rule_based_scam_messages",
+    "source_url": "synthetic_rule_based_generation",
+    "reason": "Duplicate message after cleaning.",
+    "message_preview": "Congratulations! You won a Target gift card. Claim prize REF812 now at https://example.com/pay."
+  }
+]

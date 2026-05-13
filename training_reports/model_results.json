@@ -1,0 +1,61 @@
+{
+  "training_text_column": "unigram_bigram_ready_text",
+  "training_label_column": "label",
+  "train_row_count": 4148,
+  "test_row_count": 1038,
+  "enabled_models": [
+    "logistic_regression",
+    "decision_tree",
+    "svm"
+  ],
+  "primary_metric_name": "f1",
+  "vectorizer_settings": {
+    "max_features": 10000,
+    "min_document_frequency": 1,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "lowercase": false,
+    "token_pattern": "(?u)\\b\\w+\\b"
+  },
+  "vocabulary_size": 10000,
+  "model_results": [
+    {
+      "model_name": "logistic_regression",
+      "metrics": {
+        "accuracy": 0.9691714836223507,
+        "precision": 1.0,
+        "recall": 0.7664233576642335,
+        "f1": 0.8677685950413223
+      }
+    },
+    {
+      "model_name": "decision_tree",
+      "metrics": {
+        "accuracy": 0.976878612716763,
+        "precision": 0.937984496124031,
+        "recall": 0.8832116788321168,
+        "f1": 0.9097744360902256
+      }
+    },
+    {
+      "model_name": "svm",
+      "metrics": {
+        "accuracy": 0.9894026974951831,
+        "precision": 0.9921875,
+        "recall": 0.927007299270073,
+        "f1": 0.9584905660377359
+      }
+    }
+  ],
+  "best_model": {
+    "model_name": "svm",
+    "metrics": {
+      "accuracy": 0.9894026974951831,
+      "precision": 0.9921875,
+      "recall": 0.927007299270073,
+      "f1": 0.9584905660377359
+    }
+  }
+}

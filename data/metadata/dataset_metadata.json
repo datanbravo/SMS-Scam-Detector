@@ -1,0 +1,143 @@
+{
+  "generated_at_universal_time": "2026-04-23T17:01:28.708737+00:00",
+  "random_seed": 42,
+  "train_split_ratio": 0.8,
+  "test_split_ratio": 0.2,
+  "total_raw_collected_samples": 5654,
+  "total_final_samples": 5186,
+  "real_sample_count": 5117,
+  "synthetic_sample_count": 69,
+  "label_distribution": {
+    "safe": 4500,
+    "scam": 686
+  },
+  "split_distribution": {
+    "train": 4148,
+    "test": 1038
+  },
+  "train_size": 4148,
+  "test_size": 1038,
+  "sources_used": [
+    "uc_irvine_sms_spam_collection",
+    "federal_trade_commission_consumer_text_scam_examples",
+    "competition_bureau_canada_text_scam_examples",
+    "synthetic_rule_based_scam_messages"
+  ],
+  "sources_skipped": [],
+  "source_distribution": [
+    {
+      "source_name": "competition_bureau_canada_text_scam_examples",
+      "data_origin_type": "public_web_example",
+      "is_synthetic": false,
+      "count": 2
+    },
+    {
+      "source_name": "federal_trade_commission_consumer_text_scam_examples",
+      "data_origin_type": "public_web_example",
+      "is_synthetic": false,
+      "count": 6
+    },
+    {
+      "source_name": "synthetic_rule_based_scam_messages",
+      "data_origin_type": "synthetic_generation",
+      "is_synthetic": true,
+      "count": 69
+    },
+    {
+      "source_name": "uc_irvine_sms_spam_collection",
+      "data_origin_type": "downloadable_dataset",
+      "is_synthetic": false,
+      "count": 5109
+    }
+  ],
+  "source_composition": {
+    "real_sample_count": 5117,
+    "synthetic_sample_count": 69,
+    "real_safe_sample_count": 4500,
+    "real_scam_sample_count": 617,
+    "has_non_synthetic_source_success": true,
+    "non_synthetic_source_names": [
+      "competition_bureau_canada_text_scam_examples",
+      "federal_trade_commission_consumer_text_scam_examples",
+      "uc_irvine_sms_spam_collection"
+    ],
+    "dataset_is_synthetic_only": false,
+    "label_coverage_depends_on_synthetic_rows": false
+  },
+  "annotation_summary": {
+    "total_annotated_rows": 226,
+    "total_annotation_count": 326,
+    "annotation_count_by_risk_category": {
+      "urgency": 76,
+      "prize_scam": 16,
+      "payment_request": 26,
+      "link_request": 126,
+      "contact_request": 17,
+      "impersonation": 17,
+      "account_verification": 15,
+      "deadline_pressure": 7,
+      "threat": 16,
+      "delivery_scam": 10
+    }
+  },
+  "required_columns": [
+    "message_text",
+    "label",
+    "label_name",
+    "source_name",
+    "source_url",
+    "data_origin_type",
+    "is_synthetic",
+    "split",
+    "cleaned_message_text",
+    "annotation_count",
+    "risk_categories_present",
+    "suspicious_phrases_json"
+  ],
+  "available_columns": [
+    "message_text",
+    "cleaned_message_text",
+    "unigram_bigram_ready_text",
+    "annotation_count",
+    "risk_categories_present",
+    "suspicious_phrases_json",
+    "label",
+    "label_name",
+    "scam_subtype",
+    "source_name",
+    "source_url",
+    "data_origin_type",
+    "is_synthetic",
+    "split",
+    "message_length_characters",
+    "message_length_words",
+    "cleaned_token_count",
+    "digit_count",
+    "exclamation_mark_count",
+    "contains_url_like_text",
+    "contains_phone_number_like_text"
+  ],
+  "recommended_vectorizer_configuration": {
+    "vectorizer_type": "TfidfVectorizer",
+    "analyzer": "word",
+    "ngram_range": [
+      1,
+      2
+    ],
+    "lowercase": false,
+    "min_df": 1,
+    "token_pattern": "(?u)\\b\\w+\\b"
+  },
+  "dataset_validation": {
+    "required_columns_present": true,
+    "full_dataset_contains_both_labels": true,
+    "non_synthetic_rows_exist": true,
+    "real_safe_rows_exist": true,
+    "train_dataset_is_not_empty": true,
+    "test_dataset_is_not_empty": true,
+    "split_column_is_filled_correctly": true,
+    "cleaned_messages_are_not_empty": true,
+    "annotation_fields_are_valid": true
+  },
+  "warnings": []
+}

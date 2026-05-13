@@ -3,9 +3,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-# ------------------------------------------------------------
-# project paths
-# ------------------------------------------------------------
+#Project paths --------------------------------------
 
 project_root_directory = Path(__file__).resolve().parent
 
@@ -17,22 +15,18 @@ metadata_directory = data_directory / "metadata"
 logs_directory = project_root_directory / "logs"
 
 
-# ------------------------------------------------------------
-# output file names
-# ------------------------------------------------------------
+#Output file names --------------------------------------
 
 raw_dataset_file_name = "raw_collected_dataset.csv"
-full_dataset_file_name = "full_dataset.csv"
-train_dataset_file_name = "train_dataset.csv"
-test_dataset_file_name = "test_dataset.csv"
+full_dataset_file_name = "full_data.csv"
+train_dataset_file_name = "train_data.csv"
+test_dataset_file_name = "test_data.csv"
 metadata_file_name = "dataset_metadata.json"
 source_validation_log_file_name = "source_validation_log.json"
-skipped_rows_log_file_name = "skipped_rows_log.json"
+skipped_rows_log_file_name = "skipped_notes.json"
 
 
-# ------------------------------------------------------------
-# general settings
-# ------------------------------------------------------------
+#General settings --------------------------------------
 
 request_timeout_seconds = 20
 random_seed = 42
@@ -46,18 +40,17 @@ use_stopword_removal = False
 user_agent = "sms_scam_detector_dataset_builder/1.0"
 
 
-# ------------------------------------------------------------
-# synthetic data settings
-# ------------------------------------------------------------
+#Synthetic data settings --------------------------------------
 
-synthetic_scam_message_count = 72
+synthetic_scam_message_count = 220
+synthetic_safe_message_count = 140
 synthetic_source_name = "synthetic_rule_based_scam_messages"
+synthetic_safe_source_name = "synthetic_normal_text_messages"
 synthetic_source_url = "synthetic_rule_based_generation"
+synthetic_safe_source_url = "synthetic_normal_text_generation"
 
 
-# ------------------------------------------------------------
-# dataset columns
-# ------------------------------------------------------------
+#Dataset columns --------------------------------------
 
 required_dataset_columns = [
     "message_text",
@@ -99,33 +92,41 @@ final_dataset_column_order = [
 ]
 
 
-# ------------------------------------------------------------
-# ML helper settings
-# ------------------------------------------------------------
+#ML helper settings --------------------------------------
 
 default_training_text_column = "unigram_bigram_ready_text"
 default_label_column = "label"
 
-default_vectorizer_configuration = {
-    "vectorizer_type": "TfidfVectorizer",
-    "analyzer": "word",
-    "ngram_range": [1, 2],
-    "lowercase": False,
-    "min_df": 1,
-    "token_pattern": r"(?u)\b\w+\b",
+default_embedding_configuration = {
+    "embedder_type": "SentenceTransformer",
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
 }
 
 
-# ------------------------------------------------------------
-# annotation settings
-# ------------------------------------------------------------
+#Annotation settings --------------------------------------
 
 risk_category_output_delimiter = "|"
 
 
-# ------------------------------------------------------------
-# regex patterns for suspicious phrases
-# ------------------------------------------------------------
+#Detector confidence settings --------------------------------------
+
+#These are not perfect numbers, but they make the demo less jumpy.
+#The model has to be pretty sure before we call something a scam.
+
+scam_probability_cutoff = 0.72
+suspicious_probability_cutoff = 0.45
+strong_rule_count_cutoff = 2
+
+high_risk_categories = {
+    "account_verification",
+    "payment_request",
+    "threat",
+    "delivery_scam",
+    "prize_scam",
+}
+
+
+#Regex patterns for suspicious phrases --------------------------------------
 
 risk_category_regex_patterns = {
     "urgency": (
@@ -219,9 +220,7 @@ risk_category_regex_patterns = {
 }
 
 
-# ------------------------------------------------------------
-# explanation templates
-# ------------------------------------------------------------
+#Explanation templates --------------------------------------
 
 risk_category_explanation_templates = {
     "urgency": "This phrase creates pressure to act quickly.",
@@ -237,9 +236,7 @@ risk_category_explanation_templates = {
 }
 
 
-# ------------------------------------------------------------
-# extraction filters used by dataset_pipeline.py
-# ------------------------------------------------------------
+#Extraction filters used by dataset_pipeline.py --------------------------------------
 
 scam_example_cue_words = {
     "account",
@@ -343,9 +340,7 @@ message_filter_stop_contains = {
 }
 
 
-# ------------------------------------------------------------
-# source definition
-# ------------------------------------------------------------
+#Source definition --------------------------------------
 
 @dataclass(frozen=True)
 class SourceDefinition:
@@ -362,9 +357,7 @@ class SourceDefinition:
     notes: str = ""
 
 
-# ------------------------------------------------------------
-# source manifest used by dataset_pipeline.py
-# ------------------------------------------------------------
+#Source manifest used by dataset_pipeline.py --------------------------------------
 
 source_manifest: tuple[SourceDefinition, ...] = (
     SourceDefinition(

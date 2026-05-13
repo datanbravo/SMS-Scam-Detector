@@ -55,7 +55,7 @@ from source_validation import (
     validate_source_definition,
     validate_web_page_target,
 )
-from synthetic_data import generate_synthetic_scam_messages
+from synthetic_data import generate_synthetic_safe_messages, generate_synthetic_scam_messages
 
 
 # These usually mean the source was unavailable, not that the code was wrong.
@@ -68,12 +68,11 @@ network_failure_categories = {
 }
 
 
-# ------------------------------------------------------------
-# basic file and folder helpers
-# ------------------------------------------------------------
+#Basic file and folder helpers --------------------------------------
+
 
 def ensure_output_directories_exist() -> None:
-    # Create all folders the pipeline needs.
+    #Make the folders we need, basically.
     directory_list = [
         data_directory,
         raw_data_directory,
@@ -88,7 +87,7 @@ def ensure_output_directories_exist() -> None:
 
 
 def get_current_timestamp_in_universal_time() -> str:
-    # Return a UTC timestamp for logs and metadata.
+    #Return a UTC timestamp for logs and metadata.
     return datetime.now(timezone.utc).isoformat()
 
 
@@ -106,10 +105,7 @@ def sanitize_file_name(value: str) -> str:
     # Make a safe file name for downloaded files.
     return re.sub(r"[^a-zA-Z0-9_-]+", "_", value).strip("_").lower()
 
-
-# ------------------------------------------------------------
-# row builders
-# ------------------------------------------------------------
+#Row builders --------------------------------------
 
 def build_dataset_record(
     message_text: str,
@@ -120,7 +116,7 @@ def build_dataset_record(
     is_synthetic: bool,
     scam_subtype: str = "",
 ) -> dict[str, Any]:
-    # Build one dataset row in a consistent shape.
+    # Build one row in the same shape each time.
     return {
         "message_text": message_text,
         "label": int(label),
@@ -146,69 +142,66 @@ def build_skipped_row(
         "source_name": source_name,
         "source_url": source_url,
         "reason": reason,
-        "failure_category": failure_category,
+        "fail_type": fail_type,
         "message_preview": message_preview,
     }
 
 
 def write_processing_logs(
-    validation_log: list[dict[str, Any]],
-    skipped_rows_log: list[dict[str, Any]],
+    validation_notes: list[dict[str, Any]],
+    skipped_notes: list[dict[str, Any]],
 ) -> None:
     # Write the validation and skipped-row logs.
-    save_json_to_file(validation_log, logs_directory / source_validation_log_file_name)
-    save_json_to_file(skipped_rows_log, logs_directory / skipped_rows_log_file_name)
+    save_json_to_file(validation_notes, logs_directory / source_validation_log_file_name)
+    save_json_to_file(skipped_notes, logs_directory / skipped_rows_log_file_name)
 
-
-# ------------------------------------------------------------
-# uci dataset extraction
-# ------------------------------------------------------------
+#Uci dataset extraction --------------------------------------
 
 def extract_records_from_uc_irvine_sms_spam_collection(
-    request_session: requests.Session,
-    source_definition: SourceDefinition,
-    validation_log: list[dict[str, Any]],
+    session: requests.Session,
+    source: SourceDefinition,
+    validation_notes: list[dict[str, Any]],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     # Download and parse the UCI SMS Spam Collection.
-    collected_records: list[dict[str, Any]] = []
-    skipped_rows: list[dict[str, Any]] = []
+    records: list[dict[str, Any]] = []
+    skipped: list[dict[str, Any]] = []
 
-    validation_result = validate_download_source(request_session, source_definition)
+    validation_result = validate_download_source(session, source)
     validation_log.append(validation_result.to_dictionary())
 
-    target_web_address = source_definition.downloadable_file_web_address or source_definition.source_url
+   url = source.downloadable_file_web_address or source.source_url
 
     if not validation_result.is_allowed:
-        skipped_rows.append(
+        skipped.append(
             build_skipped_row(
-                source_name=source_definition.source_name,
-                source_url=target_web_address,
+                source_name=source.source_name,
+                source_url=url,
                 reason=validation_result.reason,
-                failure_category=validation_result.failure_category or "",
+                failure_type=validation_result.fail_type or "",
             )
         )
-        return collected_records, skipped_rows
+        return records, skipped
 
     try:
-        response = request_session.get(
-            target_web_address,
+        response = session.get(
+            url,
             timeout=request_timeout_seconds,
             allow_redirects=True,
         )
         response.raise_for_status()
     except requests.RequestException as error:
-        failure_category, reason = classify_request_failure(error)
-        skipped_rows.append(
+        fail_type, reason = classify_request_failure(error)
+        skipped.append(
             build_skipped_row(
-                source_name=source_definition.source_name,
-                source_url=target_web_address,
+                source_name=source.source_name,
+                source_url=url,
                 reason=f"Download failed: {reason}",
-                failure_category=failure_category,
+                fail_type=fail_type,
             )
         )
-        return collected_records, skipped_rows
+        return records, skipped
 
-    download_file_name = f"{sanitize_file_name(source_definition.source_name)}.zip"
+    download_file_name = f"{sanitize_file_name(source.source_name)}.zip"
     download_file_path = downloads_directory / download_file_name
     download_file_path.write_bytes(response.content)
 
@@ -226,25 +219,25 @@ def extract_records_from_uc_irvine_sms_spam_collection(
             )
 
             if message_file_name is None:
-                skipped_rows.append(
+                skipped.append(
                     build_skipped_row(
-                        source_name=source_definition.source_name,
-                        source_url=target_web_address,
+                        source_name=source.source_name,
+                        source_url=url,
                         reason="Could not find the expected SMSSpamCollection file in the archive.",
-                        failure_category="download_parse_error",
+                        fail_type="download_parse_error",
                     )
                 )
-                return collected_records, skipped_rows
+                return records, skipped
 
             message_file_bytes = archive_file.read(message_file_name)
 
     except (zipfile.BadZipFile, OSError, KeyError) as error:
         skipped_rows.append(
             build_skipped_row(
-                source_name=source_definition.source_name,
-                source_url=target_web_address,
+                source_name=source.source_name,
+                source_url=url,
                 reason=f"Downloaded file could not be read as the expected archive: {error}",
-                failure_category="download_parse_error",
+                fail_type="download_parse_error",
             )
         )
         return collected_records, skipped_rows
@@ -257,12 +250,12 @@ def extract_records_from_uc_irvine_sms_spam_collection(
 
         line_parts = line_text.split("\t", maxsplit=1)
         if len(line_parts) != 2:
-            skipped_rows.append(
+            skipped.append(
                 build_skipped_row(
-                    source_name=source_definition.source_name,
-                    source_url=source_definition.source_url,
+                    source_name=source.source_name,
+                    source_url=source.source_url,
                     reason="Unexpected line format in the UCI source file.",
-                    failure_category="source_file_parse_error",
+                    fail_type="source_file_parse_error",
                     message_preview=line_text[:120],
                 )
             )
@@ -272,34 +265,33 @@ def extract_records_from_uc_irvine_sms_spam_collection(
         normalized_label = source_label.strip().lower()
 
         if normalized_label not in {"ham", "spam"}:
-            skipped_rows.append(
+            skipped.append(
                 build_skipped_row(
-                    source_name=source_definition.source_name,
-                    source_url=source_definition.source_url,
+                    source_name=source.source_name,
+                    source_url=source.source_url,
                     reason="Unexpected label in the UCI source file.",
-                    failure_category="source_file_parse_error",
+                    fail_type="source_file_parse_error",
                     message_preview=line_text[:120],
                 )
             )
             continue
 
-        collected_records.append(
+        records.append(
             build_dataset_record(
                 message_text=message_text.strip(),
                 label=1 if normalized_label == "spam" else 0,
-                source_name=source_definition.source_name,
-                source_url=source_definition.source_url,
+                source_name=source.source_name,
+                source_url=source.source_url,
                 data_origin_type="downloadable_dataset",
                 is_synthetic=False,
             )
         )
 
-    return collected_records, skipped_rows
+    return records, skipped
 
 
-# ------------------------------------------------------------
-# public web page extraction
-# ------------------------------------------------------------
+#Public web page extraction ---------------------------------------
+
 
 def split_text_into_sentences(text_value: str) -> list[str]:
     # Split visible page text into sentence-like pieces.
@@ -307,14 +299,14 @@ def split_text_into_sentences(text_value: str) -> list[str]:
     return [sentence.strip() for sentence in sentence_candidates if sentence.strip()]
 
 
-def normalize_extracted_message_candidate(message_candidate: str) -> str:
-    # Clean extracted message-like text before keeping it.
-    normalized_candidate = re.sub(r"\(blurred link\)", "", message_candidate, flags=re.IGNORECASE)
-    normalized_candidate = normalized_candidate.replace("“", '"').replace("”", '"').replace("’", "'")
-    normalized_candidate = normalized_candidate.strip(" :;,-")
-    normalized_candidate = normalized_candidate.strip('"')
-    normalized_candidate = re.sub(r"\s+", " ", normalized_candidate).strip()
-    return normalized_candidate
+def normalize_extracted_message_candidate(msg_candidate: str) -> str:
+    #Clean extracted message-like text before keeping it.
+    candidate = re.sub(r"\(blurred link\)", "", msg_candidate, flags=re.IGNORECASE)
+    candidate = candidate.replace("“", '"').replace("”", '"').replace("’", "'")
+    candidate = candidate.strip(" :;,-")
+    candidate = candidate.strip('"')
+    candidate = re.sub(r"\s+", " ", candidate).strip()
+    return candidate
 
 
 def extract_quoted_message_candidates(visible_text: str) -> list[str]:
@@ -373,28 +365,28 @@ def extract_message_candidates_from_visible_text(visible_text: str) -> list[str]
     return extracted_candidates
 
 
-def looks_like_explicit_message_example(message_candidate: str) -> bool:
-    # Decide whether extracted text really looks like a scam message.
-    normalized_candidate = normalize_extracted_message_candidate(message_candidate)
-    normalized_candidate_lower = normalized_candidate.lower()
-    word_list = normalized_candidate_lower.split()
+def looks_like_explicit_message_example(msg_candidate: str) -> bool:
+    #Decide whether extracted text really looks like a scam message.
+    candidate = normalize_extracted_message_candidate(msg_candidate)
+    candidate_lower = candidate.lower()
+    words = candidate_lower.split()
 
-    if len(word_list) < 5 or len(word_list) > 45:
+    if len(words) < 5 or len(words) > 45:
         return False
 
-    if any(normalized_candidate_lower.startswith(prefix) for prefix in message_filter_stop_prefixes):
+    if any(candidate_lower.startswith(prefix) for prefix in message_filter_stop_prefixes):
         return False
 
-    if any(stop_phrase in normalized_candidate_lower for stop_phrase in message_filter_stop_contains):
+    if any(stop_phrase in candidate_lower for stop_phrase in message_filter_stop_contains):
         return False
 
-    if "scammer" in normalized_candidate_lower or "scammers" in normalized_candidate_lower:
+    if "scammer" in candidate_lower or "scammers" in candidate_lower:
         return False
 
-    has_scam_cue_word = any(keyword in normalized_candidate_lower for keyword in scam_example_cue_words)
-    has_action_word = any(keyword in normalized_candidate_lower for keyword in scam_action_words)
-    has_second_person_language = any(word in {"you", "your", "we", "our"} for word in word_list)
-    has_link_like_reference = "link" in normalized_candidate_lower or "http" in normalized_candidate_lower
+    has_scam_cue_word = any(keyword in candidate_lower for keyword in scam_example_cue_words)
+    has_action_word = any(keyword in candidate_lower for keyword in scam_action_words)
+    has_second_person_language = any(word in {"you", "your", "we", "our"} for word in words)
+    has_link_like_reference = "link" in candidate_lower or "http" in candidate_lower
 
     if not has_scam_cue_word:
         return False
@@ -427,67 +419,67 @@ def extract_message_examples_from_page_markup(page_markup_text: str) -> list[str
             candidate_list.extend(extract_message_candidates_from_visible_text(visible_text))
 
     for candidate in candidate_list:
-        normalized_candidate = normalize_extracted_message_candidate(candidate)
-        normalized_candidate_lower = normalized_candidate.lower()
+        candidate = normalize_extracted_message_candidate(candidate)
+        candidate_lower = candidate.lower()
 
-        if not normalized_candidate:
+        if not candidate:
             continue
 
-        if not looks_like_explicit_message_example(normalized_candidate):
+        if not looks_like_explicit_message_example(candidate):
             continue
 
-        if normalized_candidate_lower in seen_candidates:
+        if candidate_lower in seen_candidates:
             continue
 
-        seen_candidates.add(normalized_candidate_lower)
-        normalized_candidates.append(normalized_candidate)
+        seen_candidates.add(candidate_lower)
+        normalized_candidates.append(candidate)
 
     return normalized_candidates
 
 
 def extract_records_from_public_web_pages(
-    request_session: requests.Session,
-    source_definition: SourceDefinition,
-    validation_log: list[dict[str, Any]],
+    session: requests.Session,
+    source: SourceDefinition,
+    validation_notes: list[dict[str, Any]],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     # Collect scam-message examples from public alert pages.
-    collected_records: list[dict[str, Any]] = []
-    skipped_rows: list[dict[str, Any]] = []
+    records: list[dict[str, Any]] = []
+    skipped: list[dict[str, Any]] = []
 
-    for page_web_address in source_definition.page_web_addresses:
+    for page_url in source.page_web_addresses:
         page_validation = validate_web_page_target(
-            request_session=request_session,
-            source_definition=source_definition,
-            page_web_address=page_web_address,
+            session=session,
+            source=source,
+            page_url=page_url,
         )
-        validation_log.append(page_validation.to_dictionary())
+        validation_notes.append(page_validation.to_dictionary())
 
         if not page_validation.is_allowed:
-            skipped_rows.append(
+            skipped.append(
                 build_skipped_row(
-                    source_name=source_definition.source_name,
-                    source_url=page_web_address,
+                    source_name=source.source_name,
+                    source_url=page_url,
                     reason=page_validation.reason,
-                    failure_category=page_validation.failure_category or "",
+                    fail_type=page_validation.fail_type or "",
                 )
             )
             continue
 
         try:
-            response = request_session.get(
-                page_web_address,
+            response = session.get(
+                page_url,
                 timeout=request_timeout_seconds,
                 allow_redirects=True,
             )
             response.raise_for_status()
         except requests.RequestException as error:
-            failure_category, reason = classify_request_failure(error)
-            skipped_rows.append(
+            fail_type, reason = classify_request_failure(error)
+            skipped.append(
                 build_skipped_row(
-                    source_name=source_definition.source_name,
-                    source_url=page_web_address,
+                    source_name=source.source_name,
+                    source_url=page_url,
                     reason=f"Page download failed: {reason}",
-                    failure_category=failure_category,
+                    fail_type=fail_type,
                 )
             )
             continue
@@ -495,130 +487,128 @@ def extract_records_from_public_web_pages(
         message_examples = extract_message_examples_from_page_markup(response.text)
 
         if not message_examples:
-            skipped_rows.append(
+            skipped.append(
                 build_skipped_row(
-                    source_name=source_definition.source_name,
-                    source_url=page_web_address,
+                    source_name=source.source_name,
+                    source_url=page_url,
                     reason="No explicit message examples were extracted from the page.",
-                    failure_category="empty_extraction_result",
+                    fail_type="empty_extraction_result",
                 )
             )
             continue
 
         for message_text in message_examples:
-            collected_records.append(
+            records.append(
                 build_dataset_record(
                     message_text=message_text,
                     label=1,
-                    source_name=source_definition.source_name,
-                    source_url=page_web_address,
+                    source_name=source.source_name,
+                    source_url=page_url,
                     data_origin_type="public_web_example",
                     is_synthetic=False,
                 )
             )
 
-    return collected_records, skipped_rows
+    return records, skipped
 
 
-# ------------------------------------------------------------
-# source collection
-# ------------------------------------------------------------
+#Source collection --------------------------------------
+
 
 def collect_records_from_source(
-    request_session: requests.Session,
-    source_definition: SourceDefinition,
-    validation_log: list[dict[str, Any]],
+    session: requests.Session,
+    source: SourceDefinition,
+    validation_notes: list[dict[str, Any]],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
     # Collect records from one source and build a short summary.
-    collected_records: list[dict[str, Any]] = []
-    skipped_rows: list[dict[str, Any]] = []
+    records: list[dict[str, Any]] = []
+    skipped: list[dict[str, Any]] = []
 
     source_summary = {
-        "source_name": source_definition.source_name,
-        "source_type": source_definition.source_type,
+        "source_name": source.source_name,
+        "source_type": source.source_type,
         "records_collected": 0,
         "used_for_dataset": False,
         "is_synthetic_source": False,
-        "failure_categories": [],
+        "fail_types": [],
         "skip_reason": "",
     }
 
     source_definition_result = validate_source_definition(source_definition)
-    validation_log.append(source_definition_result.to_dictionary())
+    validation_notes.append(source_definition_result.to_dictionary())
 
     if not source_definition_result.is_allowed:
         source_summary["skip_reason"] = source_definition_result.reason
-        return collected_records, skipped_rows, source_summary
+        return records, skipped, source_summary
 
-    if source_definition.source_type == "downloadable_dataset":
-        collected_records, skipped_rows = extract_records_from_uc_irvine_sms_spam_collection(
-            request_session=request_session,
-            source_definition=source_definition,
-            validation_log=validation_log,
+    if source.source_type == "downloadable_dataset":
+        records, skipped = extract_records_from_uc_irvine_sms_spam_collection(
+            session=session,
+            source=source_,
+            validation_notes=validation_notes,
         )
-    elif source_definition.source_type == "web_page_examples":
-        collected_records, skipped_rows = extract_records_from_public_web_pages(
-            request_session=request_session,
-            source_definition=source_definition,
-            validation_log=validation_log,
+    elif source.source_type == "web_page_examples":
+        records, skipped = extract_records_from_public_web_pages(
+            session=session,
+            source=source,
+            validation_notes=validation_notes,
         )
     else:
-        skipped_rows.append(
+        skipped.append(
             build_skipped_row(
-                source_name=source_definition.source_name,
-                source_url=source_definition.source_url,
-                reason=f"Unsupported source type '{source_definition.source_type}'.",
+                source_name=source.source_name,
+                source_url=source.source_url,
+                reason=f"Unsupported source type '{source.source_type}'.",
             )
         )
 
     source_summary["records_collected"] = len(collected_records)
     source_summary["used_for_dataset"] = len(collected_records) > 0
-    source_summary["failure_categories"] = sorted(
+    source_summary["fail_types"] = sorted(
         {
-            skipped_row["failure_category"]
-            for skipped_row in skipped_rows
-            if skipped_row.get("failure_category")
+            skipped_row["fail_type"]
+            for skipped_row in skipped
+            if skipped_row.get("fail_type")
         }
     )
 
     if skipped_rows and not source_summary["skip_reason"] and not source_summary["used_for_dataset"]:
-        source_summary["skip_reason"] = skipped_rows[0]["reason"]
+        source_summary["skip_reason"] = skipped[0]["reason"]
 
-    return collected_records, skipped_rows, source_summary
+    return records, skipped, source_summary
 
 
-# ------------------------------------------------------------
-# splitting and ordering
-# ------------------------------------------------------------
+#Splitting and ordering --------------------------------------
 
-def split_dataset(prepared_dataset: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+
+def split_dataset(prepared_data: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     # Split the data into train and test sets.
-    if prepared_dataset.empty:
+    if prepared_data.empty:
         raise ValueError("Cannot split an empty dataset.")
 
-    stratify_values = prepared_dataset["label"] if prepared_dataset["label"].nunique() > 1 else None
+    stratify_values = prepared_data["label"] if prepared_data["label"].nunique() > 1 else None
 
     try:
-        train_dataset, test_dataset = train_test_split(
-            prepared_dataset,
+        train_data, test_data = train_test_split(
+            prepared_data,
             test_size=test_split_ratio,
             random_state=random_seed,
             stratify=stratify_values,
         )
     except ValueError:
-        train_dataset, test_dataset = train_test_split(
-            prepared_dataset,
+        train_data, test_data = train_test_split(
+            prepared_data,
             test_size=test_split_ratio,
             random_state=random_seed,
             stratify=None,
         )
 
-    train_dataset = train_dataset.copy().reset_index(drop=True)
-    test_dataset = test_dataset.copy().reset_index(drop=True)
-    train_dataset["split"] = "train"
-    test_dataset["split"] = "test"
+    train_data = train_data.copy().reset_index(drop=True)
+    test_data = test_data.copy().reset_index(drop=True)
+    train_data["split"] = "train"
+    test_data["split"] = "test"
 
-    return train_dataset, test_dataset
+    return train_data, test_data
 
 
 def order_final_dataset_columns(dataset: pd.DataFrame) -> pd.DataFrame:
@@ -636,17 +626,15 @@ def order_final_dataset_columns(dataset: pd.DataFrame) -> pd.DataFrame:
     return dataset.loc[:, ordered_column_names]
 
 
-# ------------------------------------------------------------
-# summaries and validation
-# ------------------------------------------------------------
+#Summaries and validation --------------------------------------
 
-def build_source_composition_summary(full_dataset: pd.DataFrame) -> dict[str, Any]:
+def build_source_composition_summary(full_data: pd.DataFrame) -> dict[str, Any]:
     # Summarize how much of the dataset is real vs synthetic.
-    real_dataset = full_dataset[~full_dataset["is_synthetic"]].copy()
-    synthetic_dataset = full_dataset[full_dataset["is_synthetic"]].copy()
+    real_dataset = full_data[~full_data["is_synthetic"]].copy()
+    synthetic_dataset = full_data[full_data["is_synthetic"]].copy()
 
     real_label_values = set(real_dataset["label"].dropna().astype(int).tolist()) if not real_dataset.empty else set()
-    final_label_values = set(full_dataset["label"].dropna().astype(int).tolist()) if not full_dataset.empty else set()
+    final_label_values = set(full_data["label"].dropna().astype(int).tolist()) if not full_data.empty else set()
     non_synthetic_source_names = sorted(real_dataset["source_name"].dropna().astype(str).unique().tolist())
 
     return {
@@ -661,13 +649,13 @@ def build_source_composition_summary(full_dataset: pd.DataFrame) -> dict[str, An
     }
 
 
-def build_annotation_summary(full_dataset: pd.DataFrame) -> dict[str, Any]:
+def build_annotation_summary(full_data: pd.DataFrame) -> dict[str, Any]:
     # Summarize how many phrase annotations were created.
-    total_annotated_rows = int((full_dataset["annotation_count"] > 0).sum())
-    total_annotation_count = int(full_dataset["annotation_count"].sum())
+    total_annotated_rows = int((full_data["annotation_count"] > 0).sum())
+    total_annotation_count = int(full_data["annotation_count"].sum())
     annotation_count_by_risk_category: dict[str, int] = {}
 
-    for suspicious_phrases_json_text in full_dataset["suspicious_phrases_json"].fillna("[]").astype(str).tolist():
+    for suspicious_phrases_json_text in full_data["suspicious_phrases_json"].fillna("[]").astype(str).tolist():
         annotation_list = json.loads(suspicious_phrases_json_text)
 
         for annotation in annotation_list:
@@ -685,13 +673,13 @@ def build_annotation_summary(full_dataset: pd.DataFrame) -> dict[str, Any]:
 
 
 def validate_real_source_collection(
-    source_summaries: list[dict[str, Any]],
+    source_notes: list[dict[str, Any]],
     source_composition_summary: dict[str, Any],
 ) -> None:
     # Make sure the dataset is not pretending to be real if all public sources failed.
     real_source_summaries = [
         source_summary
-        for source_summary in source_summaries
+        for source_summary in source_notes
         if not source_summary.get("is_synthetic_source", False)
     ]
 
@@ -700,10 +688,10 @@ def validate_real_source_collection(
 
     real_source_failure_categories = sorted(
         {
-            failure_category
+            fail_type
             for source_summary in real_source_summaries
-            for failure_category in source_summary.get("failure_categories", [])
-            if failure_category
+            for fail_type in source_summary.get("failure_categories", [])
+            if fail_type
         }
     )
 
@@ -725,11 +713,11 @@ def validate_real_source_collection(
     )
 
 
-def validate_annotation_columns(full_dataset: pd.DataFrame) -> list[str]:
+def validate_annotation_columns(full_data: pd.DataFrame) -> list[str]:
     # Validate annotation structure so later highlighting logic can trust the saved spans and categories.
     validation_errors: list[str] = []
 
-    for row_number, row in full_dataset.reset_index(drop=True).iterrows():
+    for row_number, row in full_data.reset_index(drop=True).iterrows():
         annotation_count_value = row.get("annotation_count", 0)
         message_text = "" if pd.isna(row.get("message_text")) else str(row.get("message_text"))
         risk_categories_present_value = row.get("risk_categories_present", "")
@@ -748,22 +736,22 @@ def validate_annotation_columns(full_dataset: pd.DataFrame) -> list[str]:
         suspicious_phrases_json_text = "[]" if pd.isna(suspicious_phrases_json_value) else str(suspicious_phrases_json_value)
 
         try:
-            annotation_list = json.loads(suspicious_phrases_json_text)
+            annotations = json.loads(suspicious_phrases_json_text)
         except json.JSONDecodeError:
             validation_errors.append(f"Row {row_number} has invalid suspicious_phrases_json.")
             continue
 
-        if not isinstance(annotation_list, list):
+        if not isinstance(annotations, list):
             validation_errors.append(f"Row {row_number} suspicious_phrases_json must decode to a list.")
             continue
 
-        if annotation_count != len(annotation_list):
+        if annotation_count != len(annotations):
             validation_errors.append(f"Row {row_number} annotation_count does not match suspicious_phrases_json length.")
 
         risk_categories_present = "" if pd.isna(risk_categories_present_value) else str(risk_categories_present_value)
         annotation_list_for_category_summary = [
             {"risk_category": str(annotation.get("risk_category", "")).strip()}
-            for annotation in annotation_list
+            for annotation in annotations
             if isinstance(annotation, dict) and str(annotation.get("risk_category", "")).strip()
         ]
         expected_risk_categories_present = build_risk_categories_present_text(annotation_list_for_category_summary)
@@ -777,7 +765,7 @@ def validate_annotation_columns(full_dataset: pd.DataFrame) -> list[str]:
         if risk_categories_present != expected_risk_categories_present:
             validation_errors.append(f"Row {row_number} risk_categories_present does not match the annotation categories.")
 
-        for annotation_number, annotation in enumerate(annotation_list):
+        for annotation_number, annotation in enumerate(annotations):
             if not isinstance(annotation, dict):
                 validation_errors.append(f"Row {row_number} annotation {annotation_number} is not a dictionary.")
                 continue
@@ -838,18 +826,18 @@ def validate_annotation_columns(full_dataset: pd.DataFrame) -> list[str]:
 
 
 def validate_dataset_quality(
-    full_dataset: pd.DataFrame,
-    train_dataset: pd.DataFrame,
-    test_dataset: pd.DataFrame,
+    full_data: pd.DataFrame,
+    train_data: pd.DataFrame,
+    test_data: pd.DataFrame,
     source_composition_summary: dict[str, Any],
 ) -> dict[str, Any]:
     # Run a quality check before writing final outputs.
     validation_errors: list[str] = []
 
     dataset_map = {
-        "full_dataset": full_dataset,
-        "train_dataset": train_dataset,
-        "test_dataset": test_dataset,
+        "full_dataset": full_data,
+        "train_dataset": train_data,
+        "test_dataset": test_data,
     }
 
     for dataset_name, dataset in dataset_map.items():
@@ -862,13 +850,13 @@ def validate_dataset_quality(
         if missing_columns:
             validation_errors.append(f"{dataset_name} is missing required columns: {missing_columns}")
 
-    if train_dataset.empty:
+    if train_data.empty:
         validation_errors.append("train_dataset is empty.")
 
-    if test_dataset.empty:
+    if test_data.empty:
         validation_errors.append("test_dataset is empty.")
 
-    if full_dataset.empty:
+    if full_data.empty:
         validation_errors.append("full_dataset is empty.")
 
     if source_composition_summary["real_sample_count"] == 0:
@@ -880,25 +868,25 @@ def validate_dataset_quality(
     if source_composition_summary["real_safe_sample_count"] == 0:
         validation_errors.append("No real safe messages were collected. The pipeline requires at least one real safe source.")
 
-    if not full_dataset.empty:
-        present_labels = set(full_dataset["label"].dropna().astype(int).tolist())
+    if not full_data.empty:
+        present_labels = set(full_data["label"].dropna().astype(int).tolist())
         if present_labels != {0, 1}:
             validation_errors.append("full_dataset must contain both label 0 and label 1.")
 
-        valid_split_rows = full_dataset["split"].fillna("").isin({"train", "test"})
+        valid_split_rows = full_data["split"].fillna("").isin({"train", "test"})
         if not valid_split_rows.all():
             validation_errors.append("full_dataset contains invalid or empty split values.")
 
-        empty_cleaned_messages = full_dataset["cleaned_message_text"].fillna("").str.strip().eq("")
+        empty_cleaned_messages = full_data["cleaned_message_text"].fillna("").str.strip().eq("")
         if empty_cleaned_messages.any():
             validation_errors.append("full_dataset contains empty cleaned_message_text values.")
 
-        validation_errors.extend(validate_annotation_columns(full_dataset))
+        validation_errors.extend(validate_annotation_columns(full_data))
 
-    if not train_dataset.empty and not train_dataset["split"].eq("train").all():
+    if not train_data.empty and not train_data["split"].eq("train").all():
         validation_errors.append("train_dataset split column must be 'train'.")
 
-    if not test_dataset.empty and not test_dataset["split"].eq("test").all():
+    if not test_data.empty and not test_data["split"].eq("test").all():
         validation_errors.append("test_dataset split column must be 'test'.")
 
     if validation_errors:
@@ -935,35 +923,35 @@ def validate_saved_output_files(output_file_paths: list[Path]) -> None:
 
 def build_metadata_payload(
     raw_record_count: int,
-    full_dataset: pd.DataFrame,
-    train_dataset: pd.DataFrame,
-    test_dataset: pd.DataFrame,
-    source_summaries: list[dict[str, Any]],
+    full_data: pd.DataFrame,
+    train_data: pd.DataFrame,
+    test_data: pd.DataFrame,
+    source_notes: list[dict[str, Any]],
     source_composition_summary: dict[str, Any],
     dataset_validation_summary: dict[str, Any],
 ) -> dict[str, Any]:
     # Build the metadata file that describes the dataset build.
-    annotation_summary = build_annotation_summary(full_dataset)
+    annotation_summary = build_annotation_summary(full_data)
 
     label_distribution = {
         label_name: int(count_value)
-        for label_name, count_value in full_dataset["label_name"].value_counts().to_dict().items()
+        for label_name, count_value in full_data["label_name"].value_counts().to_dict().items()
     }
 
     source_distribution = (
-        full_dataset.groupby(["source_name", "data_origin_type", "is_synthetic"])
+        full_data.groupby(["source_name", "data_origin_type", "is_synthetic"])
         .size()
         .reset_index(name="count")
     )
 
     split_distribution = {
         split_name: int(count_value)
-        for split_name, count_value in full_dataset["split"].value_counts().to_dict().items()
+        for split_name, count_value in full_data["split"].value_counts().to_dict().items()
     }
 
     sources_used = [
         source_summary["source_name"]
-        for source_summary in source_summaries
+        for source_summary in source_notes
         if source_summary["used_for_dataset"]
     ]
 
@@ -973,7 +961,7 @@ def build_metadata_payload(
             "reason": source_summary["skip_reason"],
             "failure_categories": source_summary.get("failure_categories", []),
         }
-        for source_summary in source_summaries
+        for source_summary in source_notes
         if not source_summary["used_for_dataset"]
     ]
 
@@ -991,20 +979,20 @@ def build_metadata_payload(
         "train_split_ratio": train_split_ratio,
         "test_split_ratio": test_split_ratio,
         "total_raw_collected_samples": int(raw_record_count),
-        "total_final_samples": int(len(full_dataset)),
-        "real_sample_count": int((~full_dataset["is_synthetic"]).sum()),
-        "synthetic_sample_count": int(full_dataset["is_synthetic"].sum()),
+        "total_final_samples": int(len(full_data)),
+        "real_sample_count": int((~full_data["is_synthetic"]).sum()),
+        "synthetic_sample_count": int(full_data["is_synthetic"].sum()),
         "label_distribution": label_distribution,
         "split_distribution": split_distribution,
-        "train_size": int(len(train_dataset)),
-        "test_size": int(len(test_dataset)),
+        "train_size": int(len(train_data)),
+        "test_size": int(len(test_data)),
         "sources_used": sources_used,
         "sources_skipped": sources_skipped,
         "source_distribution": source_distribution.to_dict(orient="records"),
         "source_composition": source_composition_summary,
         "annotation_summary": annotation_summary,
         "required_columns": required_dataset_columns,
-        "available_columns": list(full_dataset.columns),
+        "available_columns": list(full_data.columns),
         "recommended_vectorizer_configuration": build_recommended_vectorizer_configuration(),
         "dataset_validation": dataset_validation_summary,
         "warnings": warning_messages,
@@ -1013,26 +1001,26 @@ def build_metadata_payload(
 
 def print_summary(
     raw_record_count: int,
-    full_dataset: pd.DataFrame,
-    train_dataset: pd.DataFrame,
-    test_dataset: pd.DataFrame,
-    source_summaries: list[dict[str, Any]],
+    full_data: pd.DataFrame,
+    train_data: pd.DataFrame,
+    test_data: pd.DataFrame,
+    source_notes: list[dict[str, Any]],
     source_composition_summary: dict[str, Any],
 ) -> None:
     # Print a small readable summary at the end of the run.
-    total_safe_samples = int((full_dataset["label"] == 0).sum())
-    total_scam_samples = int((full_dataset["label"] == 1).sum())
-    total_synthetic_samples = int(full_dataset["is_synthetic"].sum())
+    total_safe_samples = int((full_data["label"] == 0).sum())
+    total_scam_samples = int((full_data["label"] == 1).sum())
+    total_synthetic_samples = int(full_data["is_synthetic"].sum())
 
     sources_used = [
         source_summary["source_name"]
-        for source_summary in source_summaries
+        for source_summary in source_notes
         if source_summary["used_for_dataset"]
     ]
 
     sources_skipped = [
         source_summary["source_name"]
-        for source_summary in source_summaries
+        for source_summary in source_notes
         if not source_summary["used_for_dataset"]
     ]
 
@@ -1042,8 +1030,8 @@ def print_summary(
     print(f"real sample count: {source_composition_summary['real_sample_count']}")
     print(f"synthetic sample count: {total_synthetic_samples}")
     print(f"non-synthetic sources succeeded: {source_composition_summary['has_non_synthetic_source_success']}")
-    print(f"train size: {len(train_dataset)}")
-    print(f"test size: {len(test_dataset)}")
+    print(f"train size: {len(train_data)}")
+    print(f"test size: {len(test_data)}")
     print(f"sources used: {sources_used}")
     print(f"sources skipped: {sources_skipped}")
 
@@ -1053,83 +1041,99 @@ def print_summary(
         print("warning: final label coverage depends on synthetic rows.")
 
 
-# ------------------------------------------------------------
-# main pipeline
-# ------------------------------------------------------------
+#Main pipeline --------------------------------------
+
 
 def main() -> None:
     # Run the full dataset pipeline.
     ensure_output_directories_exist()
 
-    request_session = create_default_request_session()
-    validation_log: list[dict[str, Any]] = []
-    skipped_rows_log: list[dict[str, Any]] = []
-    source_summaries: list[dict[str, Any]] = []
+    session = create_default_request_session()
+    validation_notes: list[dict[str, Any]] = []
+    skipped_notes: list[dict[str, Any]] = []
+    source_notes: list[dict[str, Any]] = []
 
     try:
         raw_records: list[dict[str, Any]] = []
 
-        for source_definition in source_manifest:
+        for sourcen in source_manifest:
             source_records, source_skipped_rows, source_summary = collect_records_from_source(
-                request_session=request_session,
-                source_definition=source_definition,
-                validation_log=validation_log,
+                session=session,
+                source=source,
+                validation_notes=validation_notes,
             )
             raw_records.extend(source_records)
-            skipped_rows_log.extend(source_skipped_rows)
-            source_summaries.append(source_summary)
+            skipped_notes.extend(source_skipped_rows)
+            source_notes.append(source_summary)
 
-        synthetic_records = generate_synthetic_scam_messages(
+        synthetic_scam_records = generate_synthetic_scam_messages(
             total_message_count=synthetic_scam_message_count,
             random_seed=random_seed,
         )
-        raw_records.extend(synthetic_records)
+        raw_records.extend(synthetic_scam_records)
         source_summaries.append(
             {
                 "source_name": "synthetic_rule_based_scam_messages",
                 "source_type": "synthetic_generation",
-                "records_collected": len(synthetic_records),
-                "used_for_dataset": len(synthetic_records) > 0,
+                "records_collected": len(synthetic_scam_records),
+                "used_for_dataset": len(synthetic_scam_records) > 0,
                 "is_synthetic_source": True,
                 "failure_categories": [],
-                "skip_reason": "" if synthetic_records else "No synthetic records were generated.",
+                "skip_reason": "" if synthetic_scam_records else "No synthetic records were generated.",
             }
         )
 
-        raw_dataset = pd.DataFrame(raw_records)
+        synthetic_safe_records = generate_synthetic_safe_messages(
+            total_message_count=synthetic_safe_message_count,
+            random_seed=random_seed,
+        )
+        raw_records.extend(synthetic_safe_records)
+        source_notes.append(
+            {
+                "source_name": "synthetic_normal_text_messages",
+                "source_type": "synthetic_generation",
+                "records_collected": len(synthetic_safe_records),
+                "used_for_dataset": len(synthetic_safe_records) > 0,
+                "is_synthetic_source": True,
+                "fail_types": [],
+                "skip_reason": "" if synthetic_safe_records else "No synthetic safe records were generated.",
+            }
+        )
 
-        if raw_dataset.empty:
-            write_processing_logs(validation_log, skipped_rows_log)
+        raw_data = pd.DataFrame(raw_records)
+
+        if raw_data.empty:
+            write_processing_logs(validation_notes, skippednotes)
             raise RuntimeError("No records were collected at all. Check source settings and internet access.")
 
         raw_dataset_output_path = raw_data_directory / raw_dataset_file_name
-        save_dataframe_as_csv(raw_dataset, raw_dataset_output_path)
+        save_dataframe_as_csv(raw_data, raw_dataset_output_path)
 
         prepared_dataset, preprocessing_skipped_rows = prepare_dataset_for_machine_learning(
-            raw_dataset=raw_dataset,
+            raw_data=raw_data,
             minimum_message_length=minimum_message_length,
             remove_stopwords=use_stopword_removal,
         )
-        skipped_rows_log.extend(preprocessing_skipped_rows)
+        skipped_notes.extend(preprocessing_skipped_rows)
 
-        if prepared_dataset.empty:
-            write_processing_logs(validation_log, skipped_rows_log)
+        if prepared_data.empty:
+            write_processing_logs(validation_notes, skipped_notes)
             raise RuntimeError("All rows were removed during preprocessing. Check source quality and rules.")
 
-        train_dataset, test_dataset = split_dataset(prepared_dataset)
+        train_data, test_data = split_dataset(prepared_data)
 
-        full_dataset = pd.concat([train_dataset, test_dataset], ignore_index=True)
-        full_dataset = order_final_dataset_columns(full_dataset)
-        train_dataset = order_final_dataset_columns(train_dataset)
-        test_dataset = order_final_dataset_columns(test_dataset)
+        full_data = pd.concat([train_data, test_data], ignore_index=True)
+        full_data = order_final_dataset_columns(full_data)
+        train_data = order_final_dataset_columns(train_data)
+        test_data = order_final_dataset_columns(test_data)
 
-        source_composition_summary = build_source_composition_summary(full_dataset)
-        validate_real_source_collection(source_summaries, source_composition_summary)
+        source_composition_summary = build_source_composition_summary(full_data)
+        validate_real_source_collection(source_notes, source_composition_summary)
 
         dataset_validation_summary = validate_dataset_quality(
-            full_dataset=full_dataset,
-            train_dataset=train_dataset,
-            test_dataset=test_dataset,
+            full_data=full_data,
+            train_data=train_data,
+            test_data=test_data,
             source_composition_summary=source_composition_summary,
         )
 
@@ -1138,22 +1142,22 @@ def main() -> None:
         test_dataset_output_path = processed_data_directory / test_dataset_file_name
         metadata_output_path = metadata_directory / metadata_file_name
 
-        save_dataframe_as_csv(full_dataset, full_dataset_output_path)
-        save_dataframe_as_csv(train_dataset, train_dataset_output_path)
-        save_dataframe_as_csv(test_dataset, test_dataset_output_path)
+        save_dataframe_as_csv(full_data, full_dataset_output_path)
+        save_dataframe_as_csv(train_data, train_dataset_output_path)
+        save_dataframe_as_csv(test_data, test_dataset_output_path)
 
         metadata_payload = build_metadata_payload(
             raw_record_count=len(raw_dataset),
-            full_dataset=full_dataset,
-            train_dataset=train_dataset,
-            test_dataset=test_dataset,
-            source_summaries=source_summaries,
+            full_data=full_data,
+            train_data=train_data,
+            test_data=test_data,
+            source_notes=source_notes,
             source_composition_summary=source_composition_summary,
             dataset_validation_summary=dataset_validation_summary,
         )
         save_json_to_file(metadata_payload, metadata_output_path)
 
-        write_processing_logs(validation_log, skipped_rows_log)
+        write_processing_logs(validation_notes, skipped_notes)
 
         validate_saved_output_files(
             [
@@ -1169,15 +1173,15 @@ def main() -> None:
 
         print_summary(
             raw_record_count=len(raw_dataset),
-            full_dataset=full_dataset,
-            train_dataset=train_dataset,
-            test_dataset=test_dataset,
-            source_summaries=source_summaries,
+            full_data=full_data,
+            train_data=train_data,
+            test_data=test_data,
+            source_notes=source_notes,
             source_composition_summary=source_composition_summary,
         )
 
     finally:
-        request_session.close()
+        session.close()
 
 
 if __name__ == "__main__":

@@ -234,6 +234,23 @@ export default function Dashboard() {
     return realOrFakeMessages.filter((oneMessage) => oneMessage.classification === pickedFilter);
   }, [allMessages, pickedFilter]);
 
+  async function deleteMessage(messageId) {
+    const reply = await fetch(`${API_BASE_URL}/api/messages/${messageId}`, {
+      method: "DELETE",
+    });
+  
+    if (!reply.ok) {
+      console.error("Delete failed");
+      return;
+    }
+  
+    setAllMessages((current) =>
+      current.filter((message) => message.id !== messageId)
+    );
+  
+    setOpenedMessage(null);
+  }
+
   return (
     <main className="relative min-h-screen overflow-hidden text-[#155d7f]">
       <BubbleBackground dense />
@@ -313,7 +330,11 @@ export default function Dashboard() {
         </section>
       </div>
 
-      <MessageDetailPanel message={openedMessage} onClose={() => setOpenedMessage(null)} />
+      <MessageDetailPanel
+        message={openedMessage}
+        onClose={() => setOpenedMessage(null)}
+        onDelete={deleteMessage}
+      />
     </main>
   );
 }

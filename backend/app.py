@@ -1,3 +1,34 @@
+from datetime import datetime, timezone
+from uuid import uuid4
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+messages = []
+
+class MessageIn(BaseModel):
+    name: str | None = None
+    message: str
+
+@app.get("/")
+def home():
+    return {"status": "SMS Scam Backend is running"}
+
+@app.get("/api/messages")
+def get_messages():
+    return messages
+
 @app.post("/api/messages")
 def create_message(payload: MessageIn):
     text = payload.message.strip()

@@ -105,6 +105,12 @@ export default function MessageDetailPanel({ message, onClose }) {
                     {message.short_explanation || "No major scam patterns were found."}
                   </p>
 
+                  {message.confidence && (
+                    <p className="mt-3 text-sm font-black text-[#9f3348]">
+                      Confidence: {(message.confidence * 100).toFixed(0)}%
+                    </p>
+                  )}
+
                   <section>
                     <h3 className="label-text mb-3">Suspicious phrases</h3>
 

@@ -145,3 +145,8 @@ def create_message(payload: MessageIn):
     ))
 
     return new_message
+
+@app.delete("/api/messages/{message_id}")
+def delete_message(message_id: str):
+    cur.execute("DELETE FROM messages WHERE id = %s", (message_id,))
+    return {"deleted": True, "id": message_id}

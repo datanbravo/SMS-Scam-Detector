@@ -362,10 +362,10 @@ def main() -> None:
     best_model_result = choose_best_model_result(model_results)
 
     best_model_output_path = get_best_model_output_path()
-    best_vectorizer_output_path = get_best_vectorizer_output_path()
+    best_embedder_output_path = get_best_embedder_output_path()
 
     save_pickle_object(best_model_result["model_object"], best_model_output_path)
-    save_pickle_object(embedder, best_vectorizer_output_path)
+    save_pickle_object(embedder, best_embedder_output_path)
 
     training_report = build_training_report(
         model_results=model_results,
@@ -381,7 +381,7 @@ def main() -> None:
     print("\nsaved files")
     print("-" * 50)
     print(f"best model: {best_model_output_path}")
-    print(f"best vectorizer: {best_vectorizer_output_path}")
+    print(f"best embedder: {best_embedder_output_path}")
     print(f"training report: {get_training_results_output_path()}")
 
 

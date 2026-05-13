@@ -13,7 +13,9 @@ export default function SplashScreen({ onDone }) {
 
   useEffect(() => {
     //This lets the splash screen show before the dashboard pops in.
-    const splashTimer = window.setTimeout(onDone, 3600);
+    const splashTimer = window.setTimeout(() => { 
+      onDone();
+    }, 1800);
     return () => window.clearTimeout(splashTimer);
   }, [onDone]);
 

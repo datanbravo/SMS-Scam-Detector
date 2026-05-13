@@ -12,7 +12,7 @@ It does not just train a model — it handles:
 
 * data collection (real + synthetic)
 * preprocessing
-* feature extraction (TF-IDF with unigrams and bigrams)
+* feature extraction (using sentence-transformers - SBERT)
 * model training and evaluation
 * prediction on new messages
 * explanation using rule-based phrase detection
@@ -60,7 +60,7 @@ It defines:
 * dataset settings (split ratio, minimum length)
 * synthetic data settings
 * dataset column structure
-* TF-IDF default configuration
+* TF-IDF default configuration (for previous version using TF-IDF)
 * regex rules for suspicious phrases
 * explanation templates
 * source definitions (UCI dataset + government pages)

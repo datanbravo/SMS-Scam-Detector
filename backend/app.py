@@ -1,6 +1,11 @@
 from datetime import datetime, timezone
 from uuid import uuid4
 
+import os
+import json
+import psycopg2
+from psycopg2.extras import RealDictCursor
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -15,7 +20,28 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-messages = []
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+conn = psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
+conn.autocommit = True
+
+cur = conn.cursor()
+
+cur.execute("""
+CREATE TABLE IF NOT EXISTS messages (
+    id TEXT PRIMARY KEY,
+    name TEXT,
+    avatar TEXT,
+    message_text TEXT,
+    classification TEXT,
+    suspicious_phrases JSONB,
+    annotation_count INTEGER,
+    risk_categories_present TEXT,
+    short_explanation TEXT,
+    confidence FLOAT,
+    created_at TEXT
+)
+""")
 
 class MessageIn(BaseModel):
     name: str | None = None
@@ -27,7 +53,14 @@ def home():
 
 @app.get("/api/messages")
 def get_messages():
-    return messages
+    cur.execute("""
+        SELECT * FROM messages
+        ORDER BY created_at DESC
+    """)
+
+    rows = cur.fetchall()
+
+    return rows
 
 @app.post("/api/messages")
 def create_message(payload: MessageIn):
@@ -82,6 +115,33 @@ def create_message(payload: MessageIn):
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
 
-    messages.insert(0, new_message)
+    cur.execute("""
+    INSERT INTO messages (
+        id,
+        name,
+        avatar,
+        message_text,
+        classification,
+        suspicious_phrases,
+        annotation_count,
+        risk_categories_present,
+        short_explanation,
+        confidence,
+        created_at
+    )
+    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    """, (
+        new_message["id"],
+        new_message["name"],
+        new_message["avatar"],
+        new_message["message_text"],
+        new_message["classification"],
+        json.dumps(new_message["suspicious_phrases"]),
+        new_message["annotation_count"],
+        new_message["risk_categories_present"],
+        new_message["short_explanation"],
+        new_message["confidence"],
+        new_message["created_at"],
+    ))
 
     return new_message

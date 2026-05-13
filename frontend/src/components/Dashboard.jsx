@@ -68,7 +68,7 @@ function StatCard({ label, value, coral = false }) {
 }
 
 export default function Dashboard() {
-  const [stillSplashing, setStillSplashing] = useState(false);
+  const [stillSplashing, setStillSplashing] = useState(true);
   const [allMessages, setAllMessages] = useState([]);
   const [messageComingIn, setMessageComingIn] = useState(null);
   const [pickedFilter, setPickedFilter] = useState("all");

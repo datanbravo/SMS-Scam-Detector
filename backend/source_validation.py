@@ -11,9 +11,8 @@ import requests
 from config import request_timeout_seconds, user_agent, SourceDefinition
 
 
-# ------------------------------------------------------------
-# result model
-# ------------------------------------------------------------
+#Result model --------------------------------------
+
 
 @dataclass
 class SourceValidationResult:
@@ -23,10 +22,10 @@ class SourceValidationResult:
     # - a downloadable file
     # - a single web page
     source_name: str
-    target_web_address: str
+    url: str
     validation_scope: str
     is_allowed: bool
-    failure_category: str | None
+    fail_type: str | None
     reason: str
     permission_basis: str
     status_code: int | None = None
@@ -36,41 +35,39 @@ class SourceValidationResult:
     checked_at_universal_time: str = ""
 
     def to_dictionary(self) -> dict[str, Any]:
-        # Return a plain dictionary version for json logs.
+        #Return a plain dictionary version for json logs.
         return asdict(self)
 
 
-# ------------------------------------------------------------
-# basic helpers
-# ------------------------------------------------------------
+#Basic helpers --------------------------------------
+
 
 def get_current_timestamp_in_universal_time() -> str:
-    # Return the current UTC timestamp.
+    #Return the current UTC timestamp.
     return datetime.now(timezone.utc).isoformat()
 
 
 def build_robots_file_web_address(target_web_address: str) -> str:
-    # Build the robots.txt address for a target page.
-    parsed_web_address = urlparse(target_web_address)
+    #Build the robots.txt address for a target page.
+    parsed_web_address = urlparse(url)
     return f"{parsed_web_address.scheme}://{parsed_web_address.netloc}/robots.txt"
 
 
 def create_default_request_session() -> requests.Session:
-    # Create one shared request session.
-    # This keeps headers consistent across all source checks.
-    request_session = requests.Session()
-    request_session.headers.update(
+    #Create one shared request session.
+    #This keeps headers consistent across all source checks.
+    session = requests.Session()
+    session.headers.update(
         {
             "User-Agent": user_agent,
             "Accept": "*/*",
         }
     )
-    return request_session
+    return session
 
 
-# ------------------------------------------------------------
-# request failure classification
-# ------------------------------------------------------------
+#Request failure classification --------------------------------------
+
 
 def classify_request_failure(request_exception: requests.RequestException) -> tuple[str, str]:
     # Turn a request exception into:
@@ -88,8 +85,8 @@ def classify_request_failure(request_exception: requests.RequestException) -> tu
         return "http_error", f"HTTP error: {request_exception_text}"
 
     if any(
-        failure_fragment in request_exception_text_lower
-        for failure_fragment in (
+        fail_part in request_exception_text_lower
+        for fail_part in (
             "failed to resolve",
             "name resolution",
             "name or service not known",
@@ -109,13 +106,12 @@ def classify_request_failure(request_exception: requests.RequestException) -> tu
     return "network_request_failure", f"Request failed: {request_exception_text}"
 
 
-# ------------------------------------------------------------
-# accessibility checks
-# ------------------------------------------------------------
+#Accessibility checks --------------------------------------
+
 
 def check_web_address_accessibility(
-    request_session: requests.Session,
-    target_web_address: str,
+    session: requests.Session,
+    url: str,
     timeout_seconds: int = request_timeout_seconds,
 ) -> tuple[bool, int | None, str, str | None]:
     # Check whether a web address is reachable.
@@ -127,8 +123,8 @@ def check_web_address_accessibility(
     status_code = None
 
     try:
-        response = request_session.get(
-            target_web_address,
+        response = session.get(
+            url,
             timeout=timeout_seconds,
             allow_redirects=True,
             stream=True,
@@ -137,8 +133,8 @@ def check_web_address_accessibility(
         response.close()
 
     except requests.RequestException as error:
-        failure_category, reason = classify_request_failure(error)
-        return False, None, reason, failure_category
+        fail_type, reason = classify_request_failure(error)
+        return False, None, reason, fail_type
 
     if status_code >= 400:
         return False, status_code, f"HTTP status {status_code}", "http_error"
@@ -147,8 +143,8 @@ def check_web_address_accessibility(
 
 
 def check_robots_permission(
-    request_session: requests.Session,
-    target_web_address: str,
+    session: requests.Session,
+    url: str,
     timeout_seconds: int = request_timeout_seconds,
 ) -> tuple[bool, str, int | None, bool | None, str | None]:
     # Check whether robots.txt allows automated access to a page.
@@ -158,12 +154,12 @@ def check_robots_permission(
     # - robots status code
     # - robots allowed value
     # - failure category if there was one
-    robots_file_web_address = build_robots_file_web_address(target_web_address)
+    robots_file_web_address = build_robots_file_web_address(url)
     robots_status_code = None
 
     try:
-        response = request_session.get(
-            robots_file_web_address,
+        response = session.get(
+            url,
             timeout=timeout_seconds,
             allow_redirects=True,
         )
@@ -171,10 +167,10 @@ def check_robots_permission(
         robots_text = response.text
 
     except requests.RequestException as error:
-        failure_category, reason = classify_request_failure(error)
-        return False, f"Could not fetch robots.txt: {reason}", None, None, failure_category
+        fail_type, reason = classify_request_failure(error)
+        return False, f"Could not fetch robots.txt: {reason}", None, None, fail_type
 
-    # If robots.txt is missing or empty, stay conservative and skip.
+    #If robots.txt is missing or empty, stay conservative and skip.
     if robots_status_code != 200 or not robots_text.strip():
         return False, "robots.txt was unavailable or empty, so the scraper skipped this page.", robots_status_code, None, "robots_file_unavailable"
 
@@ -182,7 +178,7 @@ def check_robots_permission(
     robot_file_parser.parse(robots_text.splitlines())
 
     # This checks whether our declared user agent can fetch the target page.
-    robots_allowed = robot_file_parser.can_fetch(user_agent, target_web_address)
+    robots_allowed = robot_file_parser.can_fetch(user_agent, url)
 
     if not robots_allowed:
         return False, "robots.txt disallowed automated access for this page.", robots_status_code, False, "robots_disallowed"
@@ -190,151 +186,149 @@ def check_robots_permission(
     return True, "robots.txt allows automated access for this page.", robots_status_code, True, None
 
 
-# ------------------------------------------------------------
-# source validation
-# ------------------------------------------------------------
+#Source validation --------------------------------------
 
-def validate_source_definition(source_definition: SourceDefinition) -> SourceValidationResult:
-    # Validate the source definition itself before touching the web.
+def validate_source_definition(source: SourceDefinition) -> SourceValidationResult:
+    #Validate the source definition itself before touching the web.
     # This checks things like:
     # - enabled or disabled
     # - allowed or not allowed in config
     checked_at_universal_time = get_current_timestamp_in_universal_time()
 
-    if not source_definition.enabled:
+    if not source.enabled:
         return SourceValidationResult(
-            source_name=source_definition.source_name,
-            target_web_address=source_definition.source_url,
+            source_name=source.source_name,
+            url=source.source_url,
             validation_scope="source",
             is_allowed=False,
-            failure_category="source_disabled",
+            fail_type="source_disabled",
             reason="Source is disabled in config.py.",
-            permission_basis=source_definition.permission_basis,
+            permission_basis=source.permission_basis,
             checked_at_universal_time=checked_at_universal_time,
         )
 
-    if source_definition.permission_status.lower() != "allowed":
+    if source.permission_status.lower() != "allowed":
         return SourceValidationResult(
-            source_name=source_definition.source_name,
-            target_web_address=source_definition.source_url,
+            source_name=source.source_name,
+            url=source.source_url,
             validation_scope="source",
             is_allowed=False,
-            failure_category="source_permission_not_allowed",
-            reason=f"Source permission status is '{source_definition.permission_status}', so it was skipped.",
-            permission_basis=source_definition.permission_basis,
+            fail_type="source_permission_not_allowed",
+            reason=f"Source permission status is '{source.permission_status}', so it was skipped.",
+            permission_basis=source.permission_basis,
             checked_at_universal_time=checked_at_universal_time,
         )
 
     return SourceValidationResult(
-        source_name=source_definition.source_name,
-        target_web_address=source_definition.source_url,
+        source_name=source.source_name,
+        url=source.source_url,
         validation_scope="source",
         is_allowed=True,
-        failure_category=None,
+        fail_type=None,
         reason="Source is marked as allowed in the manifest.",
-        permission_basis=source_definition.permission_basis,
+        permission_basis=source.permission_basis,
         checked_at_universal_time=checked_at_universal_time,
     )
 
 
 def validate_download_source(
-    request_session: requests.Session,
-    source_definition: SourceDefinition,
+    session: requests.Session,
+    source: SourceDefinition,
 ) -> SourceValidationResult:
     # Validate a downloadable dataset source.
     # For downloads, we need:
     # - source allowed in config
     # - target file endpoint reachable
-    base_result = validate_source_definition(source_definition)
-    target_web_address = source_definition.downloadable_file_web_address or source_definition.source_url
+    base_result = validate_source_definition(source)
+    url = source.downloadable_file_web_address or source.source_url
 
     if not base_result.is_allowed:
-        base_result.target_web_address = target_web_address
+        base_result.url = url
         return base_result
 
-    is_accessible, status_code, reason, failure_category = check_web_address_accessibility(
-        request_session=request_session,
-        target_web_address=target_web_address,
+    is_accessible, status_code, reason, fail_type = check_web_address_accessibility(
+        session=session,
+        url=url,
     )
 
     return SourceValidationResult(
-        source_name=source_definition.source_name,
-        target_web_address=target_web_address,
+        source_name=source.source_name,
+        url=url,
         validation_scope="download",
         is_allowed=is_accessible,
-        failure_category=failure_category,
+        fail_type=fail_type,
         reason=reason,
-        permission_basis=source_definition.permission_basis,
+        permission_basis=source.permission_basis,
         status_code=status_code,
         checked_at_universal_time=get_current_timestamp_in_universal_time(),
     )
 
 
 def validate_web_page_target(
-    request_session: requests.Session,
-    source_definition: SourceDefinition,
-    page_web_address: str,
+    session: requests.Session,
+    source: SourceDefinition,
+    url: str,
 ) -> SourceValidationResult:
     # Validate one web page target.
     # For page scraping, we may need:
     # - source allowed in config
     # - robots.txt permission
     # - page reachability
-    base_result = validate_source_definition(source_definition)
+    base_result = validate_source_definition(source)
 
     if not base_result.is_allowed:
         return SourceValidationResult(
-            source_name=source_definition.source_name,
-            target_web_address=page_web_address,
+            source_name=source.source_name,
+            url=url,
             validation_scope="page",
             is_allowed=False,
-            failure_category=base_result.failure_category,
+            fail_type=base_result.fail_type,
             reason=base_result.reason,
-            permission_basis=source_definition.permission_basis,
+            permission_basis=source.permission_basis,
             checked_at_universal_time=get_current_timestamp_in_universal_time(),
         )
 
     robots_file_web_address = None
     robots_status_code = None
     robots_allowed = None
-    failure_category = None
+    fail_type = None
 
-    if source_definition.requires_robots_check:
-        robots_file_web_address = build_robots_file_web_address(page_web_address)
+    if source.requires_robots_check:
+        robots_file_web_address = build_robots_file_web_address(page_url)
 
-        robots_check_allowed, robots_reason, robots_status_code, robots_allowed, failure_category = check_robots_permission(
-            request_session=request_session,
-            target_web_address=page_web_address,
+        robots_check_allowed, robots_reason, robots_status_code, robots_allowed, fai_type = check_robots_permission(
+            session=session,
+            url=page_url
         )
 
         if not robots_check_allowed:
             return SourceValidationResult(
-                source_name=source_definition.source_name,
-                target_web_address=page_web_address,
+                source_name=source.source_name,
+                url=page_url,
                 validation_scope="page",
                 is_allowed=False,
-                failure_category=failure_category,
+                fail_type=fail_type,
                 reason=robots_reason,
-                permission_basis=source_definition.permission_basis,
+                permission_basis=source.permission_basis,
                 robots_file_web_address=robots_file_web_address,
                 robots_status_code=robots_status_code,
                 robots_allowed=robots_allowed,
                 checked_at_universal_time=get_current_timestamp_in_universal_time(),
             )
 
-    is_accessible, status_code, accessibility_reason, failure_category = check_web_address_accessibility(
-        request_session=request_session,
-        target_web_address=page_web_address,
+    is_accessible, status_code, accessibility_reason, fail_type = check_web_address_accessibility(
+        session=session,
+        url=page_url,
     )
 
     return SourceValidationResult(
-        source_name=source_definition.source_name,
-        target_web_address=page_web_address,
+        source_name=source.source_name,
+        url=page_url,
         validation_scope="page",
         is_allowed=is_accessible,
-        failure_category=failure_category,
+        fail_type=fail_type
         reason=accessibility_reason,
-        permission_basis=source_definition.permission_basis,
+        permission_basis=source.permission_basis,
         status_code=status_code,
         robots_file_web_address=robots_file_web_address,
         robots_status_code=robots_status_code,

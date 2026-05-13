@@ -49,7 +49,7 @@ function MessageWithHighlights({ message }) {
   );
 }
 
-export default function MessageDetailPanel({ message, onClose }) {
+export default function MessageDetailPanel({ message, onClose, onDelete }) {
   const [showTheWhy, setShowTheWhy] = useState(false);
   const isScamMessage = message?.classification === "scam";
 
@@ -83,6 +83,14 @@ export default function MessageDetailPanel({ message, onClose }) {
                 <X size={22} />
               </button>
             </div>
+
+            <button
+              type="button"
+              onClick={() => onDelete(message.id)}
+              className="main-button"
+            >
+              Delete
+            </button>
 
             <MessageWithHighlights message={message} />
 

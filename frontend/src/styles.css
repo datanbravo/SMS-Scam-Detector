@@ -1,0 +1,385 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --foam: #fbfeff;
+  --deep: #296f9d;
+  --lagoon: #8bdff2;
+  --coral: #ff7f91;
+  --coral-light: #ffb3bf;
+  --ink: #155d7f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #bdefff;
+  font-family: Fredoka, ui-rounded, "Arial Rounded MT Bold", system-ui, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: wait;
+}
+
+/*Main water background stuff.*/
+.aquarium-gradient {
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.65), transparent 24%),
+    radial-gradient(circle at 85% 10%, rgba(255, 210, 224, 0.35), transparent 25%),
+    linear-gradient(180deg, #dffaff 0%, #bdefff 48%, #87d4ed 100%);
+}
+
+/*Simple light streaks.*/
+.ocean-rays {
+  background:
+    linear-gradient(105deg, transparent 0 12%, rgba(255, 255, 255, 0.27) 13%, transparent 21% 100%),
+    linear-gradient(75deg, transparent 0 42%, rgba(255, 255, 255, 0.16) 43%, transparent 51% 100%);
+  opacity: 0.7;
+}
+
+.plain-bubble {
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.text-foam {
+  color: var(--foam);
+}
+
+.text-coral-light {
+  color: var(--coral-light);
+}
+
+.bg-coral {
+  background: var(--coral);
+}
+
+.border-coral {
+  border-color: var(--coral);
+}
+
+.bg-deep {
+  background: var(--deep);
+}
+
+.shadow-coral {
+  box-shadow: 0 14px 35px rgba(255, 127, 145, 0.28);
+}
+
+.shadow-pearl {
+  box-shadow: 0 15px 40px rgba(71, 169, 202, 0.16);
+}
+
+/*Most panels use this bubble look.*/
+.bubble-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 1.6rem;
+  background: rgba(255, 255, 255, 0.46);
+  box-shadow: 0 20px 55px rgba(71, 169, 202, 0.16);
+  backdrop-filter: blur(16px);
+}
+
+.stat-pill {
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  padding: 0.95rem 0.75rem;
+  text-align: center;
+  box-shadow: 0 14px 34px rgba(71, 169, 202, 0.13);
+}
+
+.stat-pill-coral {
+  background: rgba(255, 222, 228, 0.55);
+}
+
+.filter-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 0.78rem 1rem;
+  color: #247b9e;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(71, 169, 202, 0.12);
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.filter-button:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.filter-button-active {
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 14px 28px rgba(71, 169, 202, 0.17);
+}
+
+.message-card {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 1.6rem;
+  padding: 1rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow: 0 16px 36px rgba(71, 169, 202, 0.13);
+  backdrop-filter: blur(14px);
+}
+
+.message-card-good {
+  box-shadow: 0 16px 34px rgba(130, 220, 245, 0.24);
+}
+
+.message-card-bad {
+  border-color: rgba(255, 172, 185, 0.6);
+  background: rgba(255, 225, 231, 0.57);
+  box-shadow: 0 16px 38px rgba(255, 127, 145, 0.18);
+}
+
+.avatar-circle,
+.small-avatar {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.54);
+  box-shadow: inset 0 0 14px rgba(255, 255, 255, 0.65);
+}
+
+.avatar-circle {
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  font-size: 2.2rem;
+}
+
+.small-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 2rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.status-safe {
+  background: rgba(219, 255, 246, 0.86);
+  color: #16745f;
+}
+
+.status-scam {
+  background: rgba(255, 127, 145, 0.22);
+  color: #9f3348;
+}
+
+.incoming-box {
+  border-radius: 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.64);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 18px 44px rgba(71, 169, 202, 0.16);
+  backdrop-filter: blur(16px);
+}
+
+.incoming-bad {
+  background: rgba(255, 225, 231, 0.65);
+  border-color: rgba(255, 172, 185, 0.65);
+}
+
+.incoming-good {
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.scanning-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: var(--coral);
+  box-shadow: 0 0 0 6px rgba(255, 127, 145, 0.15);
+  animation: scanPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes scanPulse {
+  50% {
+    transform: scale(1.25);
+    opacity: 0.65;
+  }
+}
+
+.field {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.58);
+  padding: 0.95rem 1rem;
+  color: #155d7f;
+  outline: none;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.38);
+}
+
+.field:focus {
+  border-color: rgba(31, 127, 164, 0.55);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.label-text {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2384a9;
+}
+
+.main-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  background: #9feaff;
+  padding: 1rem 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #12607f;
+  box-shadow: 0 15px 30px rgba(112, 202, 228, 0.24);
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.main-button:hover {
+  background: white;
+  transform: translateY(-1px);
+}
+
+.main-button:disabled {
+  opacity: 0.72;
+}
+
+.success-note,
+.plain-note,
+.message-read-box,
+.info-row {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.43);
+  padding: 1rem;
+  color: #2f6f8a;
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.3);
+}
+
+.success-note {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-weight: 900;
+  color: #1e7fa5;
+}
+
+.message-read-box {
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.danger-words {
+  border-radius: 999px;
+  background: rgba(255, 127, 145, 0.28);
+  padding: 0.1rem 0.45rem;
+  font-weight: 900;
+  color: #9f3348;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.phrase-box {
+  border: 1px solid rgba(255, 127, 145, 0.3);
+  border-radius: 1.4rem;
+  background: rgba(255, 127, 145, 0.13);
+  padding: 1rem;
+}
+
+.detail-panel {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  max-width: 36rem;
+  overflow-y: auto;
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  background: rgba(223, 248, 255, 0.93);
+  padding: 1.5rem;
+  color: #155d7f;
+  box-shadow: 0 0 60px rgba(112, 202, 228, 0.34);
+  backdrop-filter: blur(18px);
+}
+
+.icon-button {
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.64);
+  background: rgba(255, 255, 255, 0.48);
+  color: #146b91;
+  box-shadow: 0 10px 24px rgba(71, 169, 202, 0.14);
+}
+
+.qr-box {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 0.75rem;
+  box-shadow: 0 14px 30px rgba(112, 202, 228, 0.2);
+}
+
+.bite-mark {
+  position: absolute;
+  right: -0.9rem;
+  top: 0.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: #bdefff;
+  box-shadow:
+    -0.9rem 0.55rem 0 -0.55rem #bdefff,
+    -0.35rem 1.2rem 0 -0.65rem #bdefff;
+}

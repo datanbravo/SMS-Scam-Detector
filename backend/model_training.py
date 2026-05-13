@@ -5,9 +5,9 @@ import pickle
 from typing import Any
 
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from sklearn.metrics import classification_report
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sentence_transformers import SentenceTransformer
@@ -18,13 +18,15 @@ from model_config import (
     enabled_model_names,
     evaluation_metric_names,
     get_best_model_output_path,
-    get_best_vectorizer_output_path,
+    get_best_embedder_output_path,
+    embedding_model_name,
     get_training_results_output_path,
     logistic_regression_max_iterations,
     logistic_regression_regularization_strength,
     primary_metric_name,
     svm_regularization_strength,
     svm_kernel,
+    svm_use_probability,
     test_dataset_path,
     train_dataset_path,
     training_label_column,
@@ -34,19 +36,18 @@ from model_config import (
 )
 
 
-# ------------------------------------------------------------
-# basic helpers
-# ------------------------------------------------------------
+#Basic helpers --------------------------------------
+
 
 def load_dataset(dataset_path: str | Any) -> pd.DataFrame:
-    # Load a CSV dataset from the provided path
+    #Load a CSV dataset from the provided path.
     # and return it as a pandas DataFrame.
     return pd.read_csv(dataset_path)
 
 
 def validate_dataset_columns(dataset: pd.DataFrame, dataset_name: str) -> None:
-    # Verify the dataset contains the required text
-    # and label columns and its not empty
+    #Verify the dataset contains the required text
+    #and label columns and its not empty
     required_columns = [training_text_column, training_label_column]
 
     missing_columns = [
@@ -64,52 +65,46 @@ def validate_dataset_columns(dataset: pd.DataFrame, dataset_name: str) -> None:
         raise ValueError(f"{dataset_name} is empty.")
 
 
-def validate_training_inputs(train_dataset: pd.DataFrame, test_dataset: pd.DataFrame) -> None:
+def validate_training_inputs(train_data: pd.DataFrame, test_data: pd.DataFrame) -> None:
     # Validate both train and test datasets before starting feature extraction and training.
-    validate_dataset_columns(train_dataset, "train_dataset")
-    validate_dataset_columns(test_dataset, "test_dataset")
+    validate_dataset_columns(train_data, "train_data")
+    validate_dataset_columns(test_data, "test_data")
 
     if train_dataset[training_text_column].fillna("").str.strip().eq("").all():
-        raise ValueError("train_dataset has no usable text in the training text column.")
+        raise ValueError("train_data has no usable text in the training text column.")
 
     if test_dataset[training_text_column].fillna("").str.strip().eq("").all():
-        raise ValueError("test_dataset has no usable text in the training text column.")
+        raise ValueError("test_data has no usable text in the training text column.")
 
 
-# ------------------------------------------------------------
-# text vectorization
-# ------------------------------------------------------------
-
-###
-
+#Text embedding --------------------------------------
 
 def prepare_feature_matrices(
-    train_dataset: pd.DataFrame,
-    test_dataset: pd.DataFrame,
+    train_data: pd.DataFrame,
+    test_data: pd.DataFrame,
 ) -> tuple[SentenceTransformer, Any, Any, pd.Series, pd.Series]:
-    # Fit the embedder on training text, then encode train and test text.
-    embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+    #Fit the embedder on training text, then encode train and test text.
+    embedder = SentenceTransformer(embedding_model_name)
 
-    train_text_list = train_dataset[training_text_column].fillna("").astype(str).tolist()
-    test_text_list = test_dataset[training_text_column].fillna("").astype(str).tolist()
+    train_text_list = train_data[training_text_column].fillna("").astype(str).tolist()
+    test_text_list = test_data[training_text_column].fillna("").astype(str).tolist()
 
     x_train = embedder.encode(train_text_list)
     x_test = embedder.encode(test_text_list)
 
-    y_train = train_dataset[training_label_column].astype(int)
-    y_test = test_dataset[training_label_column].astype(int)
+    y_train = train_data[training_label_column].astype(int)
+    y_test = test_data[training_label_column].astype(int)
 
     return embedder, x_train, x_test, y_train, y_test
 
 
-# ------------------------------------------------------------
-# model builders
-# ------------------------------------------------------------
+#Model builders --------------------------------------
+
 
 def build_logistic_regression_model() -> LogisticRegression:
-    # Logistic Regression is a strong baseline for text classification.
-    # Build and return a Logistic Regression model
-    # configured for text classification tasks. 
+    #Logistic Regression is a strong baseline for text classification.
+    #Build and return a Logistic Regression model
+    #configured for text classification tasks. 
     return LogisticRegression(
         C=logistic_regression_regularization_strength,
         max_iter=logistic_regression_max_iterations,
@@ -119,8 +114,8 @@ def build_logistic_regression_model() -> LogisticRegression:
 
 def build_decision_tree_model() -> DecisionTreeClassifier:
     # Decision Tree is useful as a class-aligned comparison model.
-    # Build and return a Decision Tree classifier
-    # for comparison against other models.
+    #Build and return a Decision Tree classifier
+    #for comparison against other models.
     return DecisionTreeClassifier(
         max_depth=decision_tree_max_depth,
         min_samples_leaf=decision_tree_min_samples_leaf,
@@ -129,18 +124,17 @@ def build_decision_tree_model() -> DecisionTreeClassifier:
 
 
 def build_svm_model() -> SVC:
-    # Linear SVM is often strong for sparse text features like TF-IDF.
-    # Build and return a Support Vector Machine model
-    # optimized for sparse TF-IDF feature vectors.  
+    # Linear SVM can work well on dense sentenc embeddings.
     return SVC(
         C=svm_regularization_strength,
         kernel=svm_kernel,
+        probability=svm_use_probability,
         random_state=training_random_seed,
     )
 
 
 def build_model_dictionary() -> dict[str, Any]:
-    # Build the set of enabled models we want to compare.
+    #Build the set of enabled models we want to compare.
     available_model_builders = {
         "logistic_regression": build_logistic_regression_model,
         "decision_tree": build_decision_tree_model,
@@ -158,29 +152,53 @@ def build_model_dictionary() -> dict[str, Any]:
     return model_dictionary
 
 
-# ------------------------------------------------------------
-# evaluation
-# ------------------------------------------------------------
+#Evaluation --------------------------------------
 
 def calculate_classification_metrics(
     true_labels: pd.Series,
-    predicted_labels: Any,
+    preds: Any,
 ) -> dict[str, float]:
-    # Compute the main classification metrics for one model.
-    metric_dictionary = {
-        "accuracy": float(accuracy_score(true_labels, predicted_labels)),
-        "precision": float(precision_score(true_labels, predicted_labels, zero_division=0)),
-        "recall": float(recall_score(true_labels, predicted_labels, zero_division=0)),
-        "f1": float(f1_score(true_labels, predicted_labels, zero_division=0)),
+    #Compute the main classification metrics for one model.
+    scores = {
+        "accuracy": float(accuracy_score(true_labels, preds)),
+        "precision": float(precision_score(true_labels, preds, zero_division=0)),
+        "recall": float(recall_score(true_labels, preds, zero_division=0)),
+        "f1": float(f1_score(true_labels, preds, zero_division=0)),
     }
 
-    # Keep only the metrics listed in config, but still compute safely above.
+    #Keep only the metrics listed in config, but still compute safely above.
     return {
-        metric_name: metric_dictionary[metric_name]
+        metric_name: scores[metric_name]
         for metric_name in evaluation_metric_names
-        if metric_name in metric_dictionary
+        if metric_name in scores
     }
 
+
+def get_scam_probabilities(model: Any, x_values: Any) -> list[float]:
+    #Get scam probabilities when the model supports it.
+    if hasattr(model, "predict_proba"):
+        probability_rows = model.predict_proba(x_values)
+        return [float(row[1]) for row in probability_rows]
+
+    #This is just a backup. The main models should have predict_proba.
+    preds = model.predict(x_values)
+    return [float(value) for value in preds]
+
+
+def calculate_probability_report(true_labels: pd.Series, scam_probabilities: list[float]) -> dict[str, float]:
+    #Check a few strict cutoffs so we know how careful the model is.
+    cutoffs = [0.50, 0.60, 0.70, 0.80]
+    report: dict[str, float] = {}
+
+    for cutoff in cutoffs:
+        cutoff_preds = [1 if value >= cutoff else 0 for value in scam_probabilities]
+        key = str(cutoff).replace(".", "_")
+
+        report[f"precision_at_{key}"] = float(precision_score(true_labels, cutoff_preds, zero_division=0))
+        report[f"recall_at_{key}"] = float(recall_score(true_labels, cutoff_preds, zero_division=0))
+        report[f"f1_at_{key}"] = float(f1_score(true_labels, cutoff_preds, zero_division=0))
+
+    return report
 
 def train_and_evaluate_one_model(
     model_name: str,
@@ -190,54 +208,66 @@ def train_and_evaluate_one_model(
     x_test: Any,
     y_test: pd.Series,
 ) -> dict[str, Any]:
-    # Train a single model, generate predictions, 
-    # and evaluate its performance on test data.
+    #Train a single model and check how it did.
     model.fit(x_train, y_train)
-    predicted_labels = model.predict(x_test)
+    preds = model.predict(x_test)
+    scam_probs = get_scam_probabilities(model, x_test)
 
-    metric_dictionary = calculate_classification_metrics(
+    print(f"\n{model_name} classification report")
+    print("-" * 50)
+
+    report = classification_report(
+        y_test,
+        preds,
+        target_names=["safe", "scam"]
+    )   
+
+    print(report)
+    
+    scores = calculate_classification_metrics(
         true_labels=y_test,
-        predicted_labels=predicted_labels,
+        preds=preds,
     )
+    scores.update(calculate_probability_report(y_test, scam_probs))
 
     return {
         "model_name": model_name,
-        "metrics": metric_dictionary,
+        "metrics": scores,
         "model_object": model,
     }
 
 
-def choose_best_model_result(model_result_list: list[dict[str, Any]]) -> dict[str, Any]:
-    # Pick the best model using the primary metric from config.
-    if not model_result_list:
+def choose_best_model_result(model_results: list[dict[str, Any]]) -> dict[str, Any]:
+    #Pick the best model using the primary metric from config.
+    if not model_results:
         raise ValueError("No model results were produced.")
 
     best_model_result = max(
-        model_result_list,
+        model_results,
         key=lambda model_result: (
+            model_result["metrics"].get("f1_at_0_70", float("-inf")),
+            model_result["metrics"].get("precision_at_0_70", float("-inf")),
             model_result["metrics"].get(primary_metric_name, float("-inf")),
-            model_result["metrics"].get("accuracy", float("-inf")),
         ),
     )
 
     return best_model_result
 
 
-# ------------------------------------------------------------
-# saving outputs
-# ------------------------------------------------------------
+#Saving outputs --------------------------------------
+
 
 def save_pickle_object(object_value: Any, output_path: Any) -> None:
-    # Save a Python object with pickle.
+    #Save a Python object with pickle.
     with open(output_path, "wb") as output_file:
         pickle.dump(object_value, output_file)
 
 
 def build_training_report(
-    model_result_list: list[dict[str, Any]],
+    model_results: list[dict[str, Any]],
     best_model_result: dict[str, Any],
-    train_dataset: pd.DataFrame,
-    test_dataset: pd.DataFrame,
+    train_data: pd.DataFrame,
+    test_data: pd.DataFrame,
     embedder: SentenceTransformer,
 ) -> dict[str, Any]:
     # Build a small JSON report summarizing the training run.
@@ -245,17 +275,17 @@ def build_training_report(
     return {
         "training_text_column": training_text_column,
         "training_label_column": training_label_column,
-        "train_row_count": int(len(train_dataset)),
-        "test_row_count": int(len(test_dataset)),
+        "train_row_count": int(len(train_data)),
+        "test_row_count": int(len(test_data)),
         "enabled_models": enabled_model_names,
         "primary_metric_name": primary_metric_name,
-        #tf-idf settings were placed here
+        "embedding_model_name": embedding_model_name,
         "model_results": [
             {
                 "model_name": model_result["model_name"],
                 "metrics": model_result["metrics"],
             }
-            for model_result in model_result_list
+            for model_result in model_results
         ],
         "best_model": {
             "model_name": best_model_result["model_name"],
@@ -265,7 +295,7 @@ def build_training_report(
 
 
 def save_training_report(training_report: dict[str, Any]) -> None:
-    # Save the training report as JSON.
+    #Save the training report as JSON.
     output_path = get_training_results_output_path()
     output_path.write_text(
         json.dumps(training_report, indent=2),
@@ -273,16 +303,14 @@ def save_training_report(training_report: dict[str, Any]) -> None:
     )
 
 
-# ------------------------------------------------------------
-# printing
-# ------------------------------------------------------------
+#Printing --------------------------------------
 
-def print_model_results(model_result_list: list[dict[str, Any]], best_model_result: dict[str, Any]) -> None:
-    # Print readable model metrics to the terminal.
+def print_model_results(model_results: list[dict[str, Any]], best_model_result: dict[str, Any]) -> None:
+    #Print model metrics to the terminal.
     print("\nmodel evaluation results")
     print("-" * 50)
 
-    for model_result in model_result_list:
+    for model_result in model_results:
         model_name = model_result["model_name"]
         metrics = model_result["metrics"]
 
@@ -299,30 +327,28 @@ def print_model_results(model_result_list: list[dict[str, Any]], best_model_resu
             print(f"{metric_name}: {best_model_result['metrics'][metric_name]:.4f}")
 
 
-# ------------------------------------------------------------
-# main training flow
-# ------------------------------------------------------------
+#Main training flow --------------------------------------
 
 def main() -> None:
-    # Run the full model training pipeline:
-    # dataset loading, validation, vectorization,
+    #Run the full training flow, basically:.
+    #dataset loading, validation, vectorization,.
     # model training, evaluation, and output saving.
     ensure_model_output_directories_exist()
 
-    train_dataset = load_dataset(train_dataset_path)
-    test_dataset = load_dataset(test_dataset_path)
+    train_data = load_dataset(train_dataset_path)
+    test_data = load_dataset(test_dataset_path)
 
-    validate_training_inputs(train_dataset, test_dataset)
+    validate_training_inputs(train_data, test_data)
 
     embedder, x_train, x_test, y_train, y_test = prepare_feature_matrices(
-        train_dataset=train_dataset,
-        test_dataset=test_dataset,
+        train_data=train_data,
+        test_data=test_data,
     )
 
-    model_dictionary = build_model_dictionary()
-    model_result_list: list[dict[str, Any]] = []
+    models = build_model_dictionary()
+    model_results: list[dict[str, Any]] = []
 
-    for model_name, model in model_dictionary.items():
+    for model_name, model in models.items():
         model_result = train_and_evaluate_one_model(
             model_name=model_name,
             model=model,
@@ -331,9 +357,9 @@ def main() -> None:
             x_test=x_test,
             y_test=y_test,
         )
-        model_result_list.append(model_result)
+        model_results.append(model_result)
 
-    best_model_result = choose_best_model_result(model_result_list)
+    best_model_result = choose_best_model_result(model_results)
 
     best_model_output_path = get_best_model_output_path()
     best_vectorizer_output_path = get_best_vectorizer_output_path()
@@ -342,10 +368,10 @@ def main() -> None:
     save_pickle_object(embedder, best_vectorizer_output_path)
 
     training_report = build_training_report(
-        model_result_list=model_result_list,
+        model_results=model_results,
         best_model_result=best_model_result,
-        train_dataset=train_dataset,
-        test_dataset=test_dataset,
+        train_data=train_data,
+        test_data=test_data,
         embedder=embedder,
     )
     save_training_report(training_report)

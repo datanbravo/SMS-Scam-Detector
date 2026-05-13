@@ -8,17 +8,16 @@ from typing import Any
 import pandas as pd
 
 from config import (
-    default_vectorizer_configuration,
+    default_embedding_configuration,
     risk_category_explanation_templates,
     risk_category_output_delimiter,
     risk_category_regex_patterns,
 )
 
 
-# ------------------------------------------------------------
-# basic stopwords
-# ------------------------------------------------------------
-# Only used if stopword removal is turned on.
+#Basic stopwords --------------------------------------
+#Only used if stopword removal is turned on.
+
 
 default_stopwords = {
     "a",
@@ -48,20 +47,16 @@ default_stopwords = {
     "with",
 }
 
-
-# ------------------------------------------------------------
-# regex patterns
-# ------------------------------------------------------------
+#Regex patterns --------------------------------------#
 
 phone_number_pattern = re.compile(r"\b(?:\+?\d[\d\-\s()]{7,}\d)\b")
 url_pattern = re.compile(r"(?:https?://\S+|www\.\S+)", flags=re.IGNORECASE)
 email_address_pattern = re.compile(r"\b[\w\.-]+@[\w\.-]+\.\w+\b", flags=re.IGNORECASE)
 
 
-# ------------------------------------------------------------
-# subtype rules
-# ------------------------------------------------------------
-# These are simple keyword-based subtype assignments for scam rows.
+#Subtype rules --------------------------------------
+#These are simple keyword-based subtype assignments for scam rows.
+
 
 scam_subtype_patterns = [
     ("delivery_scam", ["delivery", "package", "parcel", "postage", "tracking", "usps", "ups", "fedex", "dhl"]),
@@ -74,11 +69,10 @@ scam_subtype_patterns = [
 ]
 
 
-# ------------------------------------------------------------
-# annotation ranking rules
-# ------------------------------------------------------------
-# Some categories are broad, and some are more specific.
-# When overlap happens, we usually keep the more specific one.
+#Annotation ranking rules --------------------------------------
+#Some categories are broad, and some are more specific.
+#When overlap happens, we usually keep the more specific one.
+
 
 general_risk_categories = {
     "urgency",
@@ -101,7 +95,7 @@ risk_category_specificity_rank = {
 }
 
 
-# Compile regex once so matching stays faster and cleaner.
+#Compile regex once so matching stays faster and cleaner.
 compiled_risk_category_regex_patterns = {
     risk_category: tuple(
         re.compile(pattern_text, flags=re.IGNORECASE)
@@ -111,40 +105,38 @@ compiled_risk_category_regex_patterns = {
 }
 
 
-# ------------------------------------------------------------
-# text cleaning
-# ------------------------------------------------------------
+#Text cleaning --------------------------------------
 
 def clean_message_text(message_text: str, remove_stopwords: bool = False) -> str:
-    # Normalize message text for ML.
+    #Normalize message text for ML.
     # Main steps:
     # - normalize unicode
     # - replace urls/emails/phones with stable tokens
     # - lowercase
     # - remove most punctuation
     # - normalize spaces
-    normalized_text = unicodedata.normalize("NFKC", message_text)
-    normalized_text = normalized_text.replace("\u00a0", " ")
+    cleaned = unicodedata.normalize("NFKC", message_text)
+    cleaned = cleaned.replace("\u00a0", " ")
 
-    normalized_text = url_pattern.sub(" url_token ", normalized_text)
-    normalized_text = email_address_pattern.sub(" email_token ", normalized_text)
-    normalized_text = phone_number_pattern.sub(" phone_token ", normalized_text)
+    cleaned = url_pattern.sub(" url_token ", cleaned)
+    cleaned = email_address_pattern.sub(" email_token ", cleaned)
+    cleaned = phone_number_pattern.sub(" phone_token ", cleaned)
 
-    normalized_text = normalized_text.lower()
+    cleaned = cleaned.lower()
 
-    # Keep letters, numbers, underscores, apostrophes, and spaces.
-    normalized_text = re.sub(r"[^a-z0-9_'\s]", " ", normalized_text)
-    normalized_text = re.sub(r"\s+", " ", normalized_text).strip()
+    #Keep letters, numbers, underscores, apostrophes, and spaces.
+    cleaned = re.sub(r"[^a-z0-9_'\s]", " ", cleaned)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
 
     if remove_stopwords:
         filtered_tokens = [
             token
-            for token in normalized_text.split()
+            for token in cleaned.split()
             if token not in default_stopwords
         ]
-        normalized_text = " ".join(filtered_tokens)
+        cleaned = " ".join(filtered_tokens)
 
-    return normalized_text
+    return cleaned
 
 
 def create_unigram_bigram_ready_text(cleaned_message_text: str) -> str:
@@ -165,9 +157,7 @@ def create_unigram_bigram_ready_text(cleaned_message_text: str) -> str:
     return " ".join(unigram_and_bigram_list)
 
 
-# ------------------------------------------------------------
-# annotation building
-# ------------------------------------------------------------
+#Annotation building --------------------------------------
 
 def build_suspicious_phrase_annotation(
     message_text: str,
@@ -190,7 +180,7 @@ def build_suspicious_phrase_annotation(
 
 def extract_annotation_candidates_from_message_text(message_text: str) -> list[dict[str, Any]]:
     # Extract all raw regex matches before overlap cleanup.
-    candidate_annotation_list: list[dict[str, Any]] = []
+    candidates: list[dict[str, Any]] = []
     seen_annotation_keys: set[tuple[int, int, str]] = set()
 
     for risk_category, compiled_pattern_list in compiled_risk_category_regex_patterns.items():
@@ -206,7 +196,7 @@ def extract_annotation_candidates_from_message_text(message_text: str) -> list[d
                 if not message_text[start_index:end_index].strip():
                     continue
 
-                candidate_annotation_list.append(
+                candidates.append(
                     build_suspicious_phrase_annotation(
                         message_text=message_text,
                         start_index=start_index,
@@ -216,31 +206,30 @@ def extract_annotation_candidates_from_message_text(message_text: str) -> list[d
                 )
                 seen_annotation_keys.add(annotation_key)
 
-    return candidate_annotation_list
+    return candidates
 
 
-# ------------------------------------------------------------
-# annotation overlap helpers
-# ------------------------------------------------------------
+#Annotation overlap helpers --------------------------------------
+
 
 def get_annotation_length(annotation: dict[str, Any]) -> int:
-    # Return character length of one annotation.
+    #Return character length of one annotation.
     return int(annotation["end_index"]) - int(annotation["start_index"])
 
 
 def get_annotation_word_count(annotation: dict[str, Any]) -> int:
-    # Return rough word count of one annotation.
+    #Return rough word count of one annotation.
     return len(str(annotation["phrase_text"]).split())
 
 
 def get_annotation_specificity_rank(annotation: dict[str, Any]) -> int:
-    # Return the configured specificity rank for a category.
+    #Return the configured specificity rank for a category.
     risk_category = str(annotation["risk_category"])
     return risk_category_specificity_rank.get(risk_category, 0)
 
 
 def annotation_category_is_general(annotation: dict[str, Any]) -> bool:
-    # Check whether the category is one of the general categories.
+    #Check whether the category is one of the general categories.
     return str(annotation["risk_category"]) in general_risk_categories
 
 
@@ -362,10 +351,10 @@ def choose_preferred_overlapping_annotation(
     return first_annotation
 
 
-def merge_overlapping_annotations(annotation_list: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def merge_overlapping_annotations(annotations: list[dict[str, Any]]) -> list[dict[str, Any]]:
     # Clean overlap conflicts so the final annotation list stays readable.
     sorted_annotation_list = sorted(
-        annotation_list,
+        annotations,
         key=lambda annotation: (
             int(annotation["start_index"]),
             -get_annotation_length(annotation),
@@ -375,7 +364,7 @@ def merge_overlapping_annotations(annotation_list: list[dict[str, Any]]) -> list
         ),
     )
 
-    cleaned_annotation_list: list[dict[str, Any]] = []
+    cleaned_annotations: list[dict[str, Any]] = []
 
     for candidate_annotation in sorted_annotation_list:
         keep_candidate_annotation = True
@@ -383,12 +372,12 @@ def merge_overlapping_annotations(annotation_list: list[dict[str, Any]]) -> list
 
         overlapping_annotation_indices = [
             existing_index
-            for existing_index, existing_annotation in enumerate(cleaned_annotation_list)
+            for existing_index, existing_annotation in enumerate(cleaned_annotations)
             if annotations_overlap(existing_annotation, candidate_annotation)
         ]
 
         for existing_index in overlapping_annotation_indices:
-            existing_annotation = cleaned_annotation_list[existing_index]
+            existing_annotation = cleaned_annotations[existing_index]
 
             if annotations_are_distinct_enough(existing_annotation, candidate_annotation):
                 continue
@@ -408,11 +397,11 @@ def merge_overlapping_annotations(annotation_list: list[dict[str, Any]]) -> list
             continue
 
         for existing_index in reversed(sorted(set(existing_indices_to_remove))):
-            cleaned_annotation_list.pop(existing_index)
+            cleaned_annotations.pop(existing_index)
 
-        cleaned_annotation_list.append(candidate_annotation)
+        cleaned_annotations.append(candidate_annotation)
 
-    cleaned_annotation_list.sort(
+    cleaned_annotations.sort(
         key=lambda annotation: (
             int(annotation["start_index"]),
             int(annotation["end_index"]),
@@ -420,7 +409,7 @@ def merge_overlapping_annotations(annotation_list: list[dict[str, Any]]) -> list
         )
     )
 
-    return cleaned_annotation_list
+    return cleaned_annotations
 
 
 def extract_suspicious_phrase_annotations(message_text: str) -> list[dict[str, Any]]:
@@ -429,15 +418,15 @@ def extract_suspicious_phrase_annotations(message_text: str) -> list[dict[str, A
         return []
 
     candidate_annotation_list = extract_annotation_candidates_from_message_text(message_text)
-    return merge_overlapping_annotations(candidate_annotation_list)
+    return merge_overlapping_annotations(candidates)
 
 
-def build_risk_categories_present_text(annotation_list: list[dict[str, Any]]) -> str:
+def build_risk_categories_present_text(annotations: list[dict[str, Any]]) -> str:
     # Build a compact category summary string for one row.
     ordered_risk_category_list: list[str] = []
     seen_risk_categories: set[str] = set()
 
-    for annotation in annotation_list:
+    for annotation in annotations:
         risk_category = str(annotation["risk_category"])
         if risk_category in seen_risk_categories:
             continue
@@ -448,21 +437,20 @@ def build_risk_categories_present_text(annotation_list: list[dict[str, Any]]) ->
     return risk_category_output_delimiter.join(ordered_risk_category_list)
 
 
-def convert_annotation_list_to_row_fields(annotation_list: list[dict[str, Any]]) -> dict[str, Any]:
+def convert_annotation_list_to_row_fields(annotations: list[dict[str, Any]]) -> dict[str, Any]:
     # Convert annotation list into row-friendly columns.
     return {
-        "annotation_count": len(annotation_list),
-        "risk_categories_present": build_risk_categories_present_text(annotation_list),
-        "suspicious_phrases_json": json.dumps(annotation_list, ensure_ascii=False),
+        "annotation_count": len(annotations),
+        "risk_categories_present": build_risk_categories_present_text(annotations),
+        "suspicious_phrases_json": json.dumps(annotations, ensure_ascii=False),
     }
 
 
-# ------------------------------------------------------------
-# subtype and lightweight features
-# ------------------------------------------------------------
+#Subtype and lightweight features --------------------------------------
+
 
 def assign_optional_scam_subtype(cleaned_message_text: str, label: int) -> str:
-    # Assign a simple scam subtype using keyword rules.
+    #Assign a simple scam subtype using keyword rules.
     if label == 0:
         return "none"
 
@@ -474,7 +462,7 @@ def assign_optional_scam_subtype(cleaned_message_text: str, label: int) -> str:
 
 
 def create_basic_text_features(message_text: str, cleaned_message_text: str) -> dict[str, int]:
-    # Create a few lightweight numeric helper features.
+    #Create a few lightweight numeric helper features.
     return {
         "message_length_characters": len(message_text),
         "message_length_words": len(message_text.split()),
@@ -486,17 +474,16 @@ def create_basic_text_features(message_text: str, cleaned_message_text: str) -> 
     }
 
 
-def build_recommended_vectorizer_configuration() -> dict[str, Any]:
-    # Return the recommended traditional vectorizer configuration.
-    return dict(default_vectorizer_configuration)
+def build_recommended_embedding_configuration() -> dict[str, Any]:
+    #Return the recommended traditional vectorizer configuration.
+    return dict(default_embedding_configuration)
 
 
-# ------------------------------------------------------------
-# main dataset preparation
-# ------------------------------------------------------------
+#Main dataset preparation --------------------------------------
+
 
 def prepare_dataset_for_machine_learning(
-    raw_dataset: pd.DataFrame,
+    raw_data: pd.DataFrame,
     minimum_message_length: int,
     remove_stopwords: bool = False,
 ) -> tuple[pd.DataFrame, list[dict[str, Any]]]:
@@ -504,12 +491,12 @@ def prepare_dataset_for_machine_learning(
     skipped_rows: list[dict[str, Any]] = []
     prepared_records: list[dict[str, Any]] = []
 
-    for row in raw_dataset.to_dict(orient="records"):
-        message_text_value = row.get("message_text")
-        message_text = "" if message_text_value is None else str(message_text_value).strip()
+    for row in raw_data.to_dict(orient="records"):
+        msg_value = row.get("message_text")
+        message_text = "" if msg_value is None else str(msg_value).strip()
 
         if not message_text:
-            skipped_rows.append(
+            skipped.append(
                 {
                     "source_name": row.get("source_name"),
                     "source_url": row.get("source_url"),
@@ -536,7 +523,7 @@ def prepare_dataset_for_machine_learning(
         )
 
         if not cleaned_message_text:
-            skipped_rows.append(
+            skipped.append(
                 {
                     "source_name": row.get("source_name"),
                     "source_url": row.get("source_url"),
@@ -554,8 +541,8 @@ def prepare_dataset_for_machine_learning(
 
         unigram_bigram_ready_text = create_unigram_bigram_ready_text(cleaned_message_text)
 
-        annotation_list = extract_suspicious_phrase_annotations(message_text)
-        annotation_row_fields = convert_annotation_list_to_row_fields(annotation_list)
+        annotations = extract_suspicious_phrase_annotations(message_text)
+        annotation_row_fields = convert_annotation_list_to_row_fields(annotations)
 
         prepared_record = dict(row)
         prepared_record["message_text"] = message_text
@@ -569,20 +556,20 @@ def prepare_dataset_for_machine_learning(
 
         prepared_records.append(prepared_record)
 
-    prepared_dataset = pd.DataFrame(prepared_records)
+    prepared_data = pd.DataFrame(prepared_records)
 
-    if prepared_dataset.empty:
-        return prepared_dataset, skipped_rows
+    if prepared_data.empty:
+        return prepared_data, skipped
 
     # If the same cleaned text appears with both labels,
-    # keeping both would teach the model contradictory information.
-    conflicting_rows = prepared_dataset[
-        prepared_dataset.groupby("cleaned_message_text")["label"].transform("nunique") > 1
+    #keeping both would teach the model contradictory information.
+    conflicting_rows = prepared_data[
+        prepared_data.groupby("cleaned_message_text")["label"].transform("nunique") > 1
     ]
 
     if not conflicting_rows.empty:
         for _, conflicting_row in conflicting_rows.iterrows():
-            skipped_rows.append(
+            skipped.append(
                 {
                     "source_name": conflicting_row.get("source_name"),
                     "source_url": conflicting_row.get("source_url"),
@@ -591,8 +578,8 @@ def prepare_dataset_for_machine_learning(
                 }
             )
 
-        prepared_dataset = prepared_dataset[
-            prepared_dataset.groupby("cleaned_message_text")["label"].transform("nunique") == 1
+        prepared_data = prepared_data[
+            prepared_data.groupby("cleaned_message_text")["label"].transform("nunique") == 1
         ].copy()
 
     # Drop exact duplicates after cleaning, keeping the first.
@@ -602,7 +589,7 @@ def prepare_dataset_for_machine_learning(
 
     if not duplicate_rows.empty:
         for _, duplicate_row in duplicate_rows.iterrows():
-            skipped_rows.append(
+            skipped.append(
                 {
                     "source_name": duplicate_row.get("source_name"),
                     "source_url": duplicate_row.get("source_url"),
@@ -611,11 +598,11 @@ def prepare_dataset_for_machine_learning(
                 }
             )
 
-        prepared_dataset = prepared_dataset.drop_duplicates(
+        prepared_data = prepared_data.drop_duplicates(
             subset=["cleaned_message_text"],
             keep="first",
         ).copy()
 
-    prepared_dataset = prepared_dataset.reset_index(drop=True)
+    prepared_data = prepared_data.reset_index(drop=True)
 
-    return prepared_dataset, skipped_rows
+    return prepared_data, skipped

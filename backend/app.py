@@ -112,17 +112,44 @@ def create_unigram_bigram_ready_text(cleaned_message_text: str) -> str:
 
 
 def get_scam_probability(message_text: str) -> float:
-    cleaned_text = clean_message_text(message_text)
-    model_text = create_unigram_bigram_ready_text(cleaned_text)
+    try:
+        cleaned_text = clean_message_text(message_text)
+        model_text = create_unigram_bigram_ready_text(cleaned_text)
 
-    embedded_text = embedder.encode([model_text])
+        embedded_text = embedder.encode([model_text])
 
-    if hasattr(scam_model, "predict_proba"):
-        probabilities = scam_model.predict_proba(embedded_text)[0]
-        return float(probabilities[1])
+        if hasattr(scam_model, "predict_proba"):
+            probabilities = scam_model.predict_proba(embedded_text)[0]
+            return float(probabilities[1])
 
-    prediction = int(scam_model.predict(embedded_text)[0])
-    return 1.0 if prediction == 1 else 0.0
+        prediction = int(scam_model.predict(embedded_text)[0])
+        return 1.0 if prediction == 1 else 0.0
+
+    except Exception as error:
+        print("MODEL ERROR:", error)
+
+        lowered = message_text.lower()
+
+        danger_words = [
+            "urgent",
+            "verify",
+            "payment",
+            "click",
+            "suspended",
+            "locked",
+            "prize",
+            "won",
+            "delivery",
+            "package",
+        ]
+
+        score = 0.15
+
+        for word in danger_words:
+            if word in lowered:
+                score += 0.12
+
+        return min(score, 0.95)
 
 
 trigger_words = [

@@ -125,43 +125,43 @@ def get_scam_probability(message_text: str) -> float:
         prediction = int(scam_model.predict(embedded_text)[0])
         return 1.0 if prediction == 1 else 0.0
 
-        except Exception as error:
-            print("MODEL ERROR:", repr(error))
-    
-            lowered = message_text.lower()
-    
-            danger_words = [
-                "urgent",
-                "verify",
-                "confirm",
-                "payment",
-                "pay",
-                "click",
-                "link",
-                "suspended",
-                "locked",
-                "violation",
-                "prize",
-                "won",
-                "delivery",
-                "package",
-                "account",
-                "final",
-                "demand",
-                "balance",
-                "debt",
-            ]
-    
-            matches = sum(1 for word in danger_words if word in lowered)
-    
-            if matches >= 5:
-                return 0.91
-            if matches >= 3:
-                return 0.78
-            if matches >= 1:
-                return 0.55
-    
-            return 0.08
+    except Exception as error:
+        print("MODEL ERROR:", repr(error))
+
+        lowered = message_text.lower()
+
+        danger_words = [
+            "urgent",
+            "verify",
+            "confirm",
+            "payment",
+            "pay",
+            "click",
+            "link",
+            "suspended",
+            "locked",
+            "violation",
+            "prize",
+            "won",
+            "delivery",
+            "package",
+            "account",
+            "final",
+            "demand",
+            "balance",
+            "debt",
+        ]
+
+        matches = sum(1 for word in danger_words if word in lowered)
+
+        if matches >= 5:
+            return 0.91
+        if matches >= 3:
+            return 0.78
+        if matches >= 1:
+            return 0.55
+
+        return 0.08
 
 
 trigger_words = [

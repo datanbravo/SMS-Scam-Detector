@@ -215,8 +215,11 @@ export default function Dashboard() {
 
   const countStuff = useMemo(() => {
     const total = allMessages.length;
-    const scam = allMessages.filter((oneMessage) => oneMessage.classification === "scam").length;
-
+    const scam = allMessages.filter(
+      (oneMessage) =>
+        oneMessage.classification === "scam" ||
+        oneMessage.classification === "suspicious"
+    ).length;
     return {
       total,
       scam,
@@ -231,7 +234,16 @@ export default function Dashboard() {
       return realOrFakeMessages;
     }
 
-    return realOrFakeMessages.filter((oneMessage) => oneMessage.classification === pickedFilter);
+    return realOrFakeMessages.filter((oneMessage) => {
+      if (pickedFilter === "scam") {
+        return (
+          oneMessage.classification === "scam" ||
+          oneMessage.classification === "suspicious"
+        );
+      }
+    
+      return oneMessage.classification === pickedFilter;
+    });
   }, [allMessages, pickedFilter]);
 
   async function deleteMessage(messageId) {

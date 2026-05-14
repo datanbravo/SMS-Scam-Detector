@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 export default function MessageCard({ message, onClick }) {
-  const looksScammy = message.classification === "scam";
+  const looksScammy = message.classification === "scam" || message.classification === "suspicious";
   const madeAt = new Date(message.created_at).toLocaleTimeString([], {
     hour: "numeric",
     minute: "2-digit",

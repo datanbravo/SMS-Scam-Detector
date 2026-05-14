@@ -6,3 +6,5 @@ sentence-transformers
 fastapi
 uvicorn
 psycopg2-binary
+numpy
+torch

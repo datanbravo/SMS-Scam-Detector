@@ -51,7 +51,7 @@ function MessageWithHighlights({ message }) {
 
 export default function MessageDetailPanel({ message, onClose, onDelete }) {
   const [showTheWhy, setShowTheWhy] = useState(false);
-  const isScamMessage = message?.classification === "scam";
+  const isScamMessage = message?.classification === "scam" || message?.classification === "suspicious";
 
   return (
     <AnimatePresence>

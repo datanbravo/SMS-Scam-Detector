@@ -215,7 +215,7 @@ def build_short_explanation(
     return f"Low scam confidence: {percent}%. No major scam patterns detected."
 
 
-#Routes (Sorry, forgot to update this file. 
+#Routes... Sorry, forgot to update this file. 
 @app.get("/")
 def home():
     return {"status": "SMS Scam Backend is running"}

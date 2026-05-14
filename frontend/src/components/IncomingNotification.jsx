@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export default function IncomingNotification({ message }) {
   if (!message) return null;
 
-  const isBadMessage = message.classification === "scam";
+  const isBadMessage = message.classification === "scam" || message.classification === "suspicious";
 
   return (
     <motion.div

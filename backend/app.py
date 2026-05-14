@@ -2,18 +2,19 @@ from datetime import datetime, timezone
 from uuid import uuid4
 from pathlib import Path
 
-import os
 import json
-import re
+import os
 import pickle
+import re
 import unicodedata
 
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+
 
 app = FastAPI()
 
@@ -25,11 +26,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL environment variable is missing.")
 
 conn = psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
 conn.autocommit = True
-
 cur = conn.cursor()
 
 cur.execute("""
@@ -48,11 +52,18 @@ CREATE TABLE IF NOT EXISTS messages (
 )
 """)
 
+
 BASE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BASE_DIR.parent
 
 MODEL_PATH = PROJECT_DIR / "saved_models" / "best_sms_scam_model.pkl"
 EMBEDDER_PATH = PROJECT_DIR / "saved_models" / "best_sms_scam_embedder.pkl"
+
+if not MODEL_PATH.exists():
+    raise RuntimeError(f"Model file not found: {MODEL_PATH}")
+
+if not EMBEDDER_PATH.exists():
+    raise RuntimeError(f"Embedder file not found: {EMBEDDER_PATH}")
 
 with open(MODEL_PATH, "rb") as model_file:
     scam_model = pickle.load(model_file)
@@ -60,12 +71,14 @@ with open(MODEL_PATH, "rb") as model_file:
 with open(EMBEDDER_PATH, "rb") as embedder_file:
     embedder = pickle.load(embedder_file)
 
+print("Loaded SVM scam model and SentenceTransformer embedder.")
+
 
 class MessageIn(BaseModel):
     name: str | None = None
     message: str
 
-#Text processng
+
 phone_number_pattern = re.compile(r"\b(?:\+?\d[\d\-\s()]{7,}\d)\b")
 url_pattern = re.compile(r"(?:https?://\S+|www\.\S+)", flags=re.IGNORECASE)
 email_address_pattern = re.compile(r"\b[\w\.-]+@[\w\.-]+\.\w+\b", flags=re.IGNORECASE)
@@ -80,7 +93,6 @@ def clean_message_text(message_text: str) -> str:
     cleaned = phone_number_pattern.sub(" phone_token ", cleaned)
 
     cleaned = cleaned.lower()
-
     cleaned = re.sub(r"[^a-z0-9_'\s]", " ", cleaned)
     cleaned = re.sub(r"\s+", " ", cleaned).strip()
 
@@ -98,7 +110,7 @@ def create_unigram_bigram_ready_text(cleaned_message_text: str) -> str:
 
     return " ".join(unigrams + bigrams)
 
-#ML prediction
+
 def get_scam_probability(message_text: str) -> float:
     cleaned_text = clean_message_text(message_text)
     model_text = create_unigram_bigram_ready_text(cleaned_text)
@@ -130,6 +142,7 @@ trigger_words = [
     ("package", "delivery_scam", "Package problems are often used in scams."),
 ]
 
+
 def extract_suspicious_phrases(message_text: str) -> list[dict]:
     suspicious_phrases = []
     lowered = message_text.lower()
@@ -138,15 +151,13 @@ def extract_suspicious_phrases(message_text: str) -> list[dict]:
         start = lowered.find(word)
 
         if start != -1:
-            suspicious_phrases.append(
-                {
-                    "phrase_text": message_text[start:start + len(word)],
-                    "start_index": start,
-                    "end_index": start + len(word),
-                    "risk_category": category,
-                    "risk_explanation": explanation,
-                }
-            )
+            suspicious_phrases.append({
+                "phrase_text": message_text[start:start + len(word)],
+                "start_index": start,
+                "end_index": start + len(word),
+                "risk_category": category,
+                "risk_explanation": explanation,
+            })
 
     return suspicious_phrases
 
@@ -215,10 +226,12 @@ def build_short_explanation(
     return f"Low scam confidence: {percent}%. No major scam patterns detected."
 
 
-#Routes... Sorry, forgot to update this file. 
 @app.get("/")
 def home():
-    return {"status": "SMS Scam Backend is running"}
+    return {
+        "status": "SMS Scam Backend is running",
+        "model": "embeddings_svm",
+    }
 
 
 @app.get("/api/messages")
@@ -236,7 +249,15 @@ def get_messages():
 def create_message(payload: MessageIn):
     text = payload.message.strip()
 
-    scam_probability = get_scam_probability(text)
+    if not text:
+        raise HTTPException(status_code=400, detail="Message cannot be empty.")
+
+    try:
+        scam_probability = get_scam_probability(text)
+    except Exception as error:
+        print("ML prediction failed:", repr(error))
+        raise HTTPException(status_code=500, detail=f"ML prediction failed: {repr(error)}")
+
     suspicious_phrases = extract_suspicious_phrases(text)
 
     classification = choose_final_classification(
